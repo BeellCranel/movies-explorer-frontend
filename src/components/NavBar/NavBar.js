@@ -1,28 +1,15 @@
-import "./NavBar.css";
-import React from "react";
-import { Route, NavLink } from "react-router-dom";
-import NavMenu from "../NavMenu/NavMenu";
+import "./NavBar.scss";
+import { Routes, Route, Link } from "react-router-dom";
+import NavEl from "../NavEl/NavEl";
+import NavElUnlogged from "../NavElUnlogged/NavElUnlogged";
 
 function NavBar() {
   return (
     <nav className="menu">
-      <Route path="/">
-        <NavLink className="menu__item menu__item_signup" to="/signup">
-          Регистрация
-        </NavLink>
-        <NavLink className="menu__item menu__item_signin" to="/signin">
-          Войти
-        </NavLink>
-      </Route>
-      <Route path="/movies">
-        <NavMenu />
-      </Route>
-      <Route path="/saved-movies">
-        <NavMenu />
-      </Route>
-      <Route path="/profile">
-        <NavMenu />
-      </Route>
+      <Routes>
+        <Route path="/" element={<NavElUnlogged />} />
+        <Route path="/movies" element={<NavEl />} />
+      </Routes>
     </nav>
   );
 }

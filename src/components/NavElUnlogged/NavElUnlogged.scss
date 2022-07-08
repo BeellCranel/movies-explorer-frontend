@@ -1,0 +1,18 @@
+.menu__item {
+  font-size: 10px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+
+  &_signin{
+    box-sizing: border-box;
+    margin: 0 0 0 14px;
+    width: 54px;
+    height: 26px;
+    background-color: #3DDC84;
+    border-radius: 3px;
+    padding: 5px 12px;
+    color: #000;
+  }
+}
