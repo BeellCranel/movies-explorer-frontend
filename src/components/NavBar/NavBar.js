@@ -1,5 +1,5 @@
 import "./NavBar.scss";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import NavEl from "../NavEl/NavEl";
 import NavElUnlogged from "../NavElUnlogged/NavElUnlogged";
 
