@@ -12,7 +12,7 @@
   &__signup {
     @extend %text-style;
 
-    @media screen and (min-width: 425px) {
+    @media screen and (min-width: 624px) {
       font-size: 12px;
     }
   }
@@ -28,7 +28,7 @@
     padding: 5px 0;
     color: #000;
 
-    @media screen and (min-width: 425px) {
+    @media screen and (min-width: 624px) {
       font-size: 12px;
       margin-left: 30px;
       width: 76px;
