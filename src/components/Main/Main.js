@@ -3,6 +3,7 @@ import MainPageNav from "../MainPageNav/MainPageNav";
 import About from "../About/About";
 import Technologies from "../Technologies/Technologies";
 import Student from "../Student/Student";
+import Footer from "../Header/Footer";
 
 function Main() {
   return (
@@ -11,6 +12,7 @@ function Main() {
       <About />
       <Technologies />
       <Student />
+      <Footer />
     </main>
   );
 }
