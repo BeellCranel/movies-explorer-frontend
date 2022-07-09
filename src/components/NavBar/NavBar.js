@@ -5,10 +5,9 @@ import NavElUnlogged from "../NavElUnlogged/NavElUnlogged";
 
 function NavBar() {
   return (
-    <nav className="menu">
+    <nav className="nav-bar">
       <Routes>
         <Route path="/" element={<NavElUnlogged />} />
-        <Route path="/movies" element={<NavEl />} />
       </Routes>
     </nav>
   );

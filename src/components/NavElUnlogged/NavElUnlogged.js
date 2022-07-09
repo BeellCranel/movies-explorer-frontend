@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 function NavElUnlogged() {
   return (
     <>
-      <Link className="menu__item menu__item_signup" to="/signup">
+      <Link className="nav-el nav-el__signup" to="/signup">
         Регистрация
       </Link>
-      <Link className="menu__item menu__item_signin" to="/signin">
+      <Link className="nav-el nav-el__signin" to="/signin">
         Войти
       </Link>
     </>

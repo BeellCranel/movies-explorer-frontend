@@ -1,11 +1,11 @@
 import "./Header.scss";
-import { Link } from "react-router-dom";
+import Logo from "../Logo/Logo";
 import NavBar from "../NavBar/NavBar";
 
 function Header() {
   return (
     <header className="header">
-      <Link className="logo" to="/" />
+      <Logo />
       <NavBar />
     </header>
   );

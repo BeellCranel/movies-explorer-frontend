@@ -1,28 +1,30 @@
 import "./NavEl.scss";
 import { Link } from "react-router-dom";
+import NavBTN from "../NavBTN/NavBTN";
 
 function NavEl() {
   return (
     <>
       <Link
-        className="menu__item menu__item_movies menu__item_closing"
+        className="nav-el nav-el__movies nav-el__closing"
         to="/movies"
       >
         Фильмы
       </Link>
       <Link
-        className="menu__item menu__item_saved menu__item_closing"
+        className="nav-el nav-el__saved nav-el__closing"
         to="/saved-movies"
       >
         Сохранённые фильмы
       </Link>
       <Link
-        className="menu__item menu__item_account menu__item_closing"
+        className="nav-el nav-el__account nav-el__closing"
         to="/profile"
       >
+        <div className="acc-icon"></div>
         Аккаунт
       </Link>
-      <button className="buttonClassName" type="button" />
+      <NavBTN />
     </>
   );
 }

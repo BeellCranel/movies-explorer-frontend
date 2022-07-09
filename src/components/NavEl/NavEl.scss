@@ -1,0 +1,45 @@
+%item-style {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  margin-left: 20px;
+}
+
+.nav-el {
+  &__movies {
+    @extend %item-style;
+  }
+
+  &__saved {
+    @extend %item-style;
+    font-weight: 400;
+  }
+
+  &__account {
+    @extend %item-style;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 32px;
+    border: 2px solid rgba(#aaa, 0.2);
+    border-radius: 50px;
+  }
+
+  &__closing {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+.acc-icon {
+  width: 10px;
+  height: 12px;
+  background-image: url("../../images/accaunt-icon.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  margin: 0 7px 0 0;
+}
