@@ -1,15 +1,11 @@
 import "./Layout.scss";
-import { Link, Outlet } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
+import { Outlet } from "react-router-dom";
+import Header from "../Header/Header";
 
 function Layout() {
   return (
     <>
-      <header className="header">
-        <Link className="logo" to="/" />
-        <NavBar />
-      </header>
-
+      <Header />
       <Outlet />
     </>
   );
