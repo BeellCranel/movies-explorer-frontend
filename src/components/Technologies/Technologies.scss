@@ -15,38 +15,108 @@
 }
 
 .technologies {
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
   padding: 70px 18px;
+
+  @media screen and (min-width: 624px) {
+    padding: 90px 50px;
+    background-color: #272727;
+  }
+
+  @media screen and (min-width: 806px) {
+    padding: 100px 70px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 100%;
+  }
 
   &__title {
     @extend %title-styles;
     padding: 0 0 28px;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #dadada;
+
+    @media screen and (min-width: 624px) {
+      font-size: 22px;
+      line-height: 27px;
+      padding: 0 0 23px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
   }
 
   &__kinds {
-    padding: 60px 0 0;
-    display: flex;
-    flex-direction: column;
+    padding-top: 60px;
+
+    @media screen and (min-width: 624px) {
+      padding-top: 80px;
+    }
 
     &_title {
       @extend %title-styles;
       text-align: center;
       font-size: 30px;
       line-height: 36.31px;
-      padding: 0 0 24px;
+      padding-bottom: 24px;
+
+      @media screen and (min-width: 624px) {
+        font-size: 50px;
+        line-height: 58px;
+        padding-bottom: 22px;
+      }
     }
 
     &_subtitle {
       @extend %subtitle-styles;
       text-align: center;
+
+      @media screen and (min-width: 624px) {
+        font-size: 12px;
+        line-height: 18px;
+      }
     }
 
     &_stack {
       box-sizing: border-box;
+      max-width: 178px;
+      margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      padding: 50px 53px 0;
+      padding-top: 50px;
+
+      @media screen and (min-width: 374px) {
+        max-width: 272px;
+      }
+
+      @media screen and (min-width: 468px) {
+        max-width: 366px;
+      }
+
+      @media screen and (min-width: 562px) {
+        max-width: 460px;
+      }
+
+      @media screen and (min-width: 624px) {
+        padding-top: 83px;
+      }
+
+      @media screen and (min-width: 671px) {
+        max-width: 554px;
+      }
+
+      @media screen and (min-width: 765px) {
+        max-width: 648px;
+      }
+
+      @media screen and (min-width: 850px) {
+        max-width: 690px;
+      }
     }
 
     &_item {
@@ -55,11 +125,19 @@
       height: 57px;
       background-color: #303030;
       border-radius: 10px;
-      text-align: center;
-      padding-top: 21px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       @extend %subtitle-styles;
       font-size: 12;
       line-height: 15px;
+
+      @media screen and (min-width: 850px) {
+        width: 90px;
+        height: 60px;
+        font-size: 14;
+        line-height: 17px;
+      }
     }
   }
 }
