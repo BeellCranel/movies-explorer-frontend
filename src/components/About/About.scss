@@ -14,53 +14,121 @@
 }
 
 .about {
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
   padding: 70px 18px;
+
+  @media screen and (min-width: 624px) {
+    padding: 90px 50px;
+  }
+
+  @media screen and (min-width: 769px) {
+    padding: 110px 70px;
+  }
 
   &__title {
     @extend %title-styles;
-    margin: 0 0 4px;
     padding: 0 0 28px;
     border-bottom: 1px solid #dadada;
+
+    @media screen and (min-width: 624px) {
+      font-size: 22px;
+      line-height: 27px;
+      padding: 0 0 23px;
+    }
+  }
+
+  &__facts {
+    display: flex;
+    flex-direction: column;
+    row-gap: 56px;
+    padding: 60px 0;
+
+    @media screen and (min-width: 624px) {
+      flex-direction: row;
+      column-gap: 30px;
+      padding: 70px 0 93px;
+    }
+
+    @media screen and (min-width: 769px) {
+      column-gap: 40px;
+      padding: 70px 0 110px;
+    }
   }
 
   &__fact {
-    padding-top: 56px;
-
     &_title {
       @extend %title-styles;
       padding-bottom: 16px;
+
+      @media screen and (min-width: 624px) {
+        padding-bottom: 22px;
+        font-size: 20px;
+        line-height: 24px;
+      }
+
+      @media screen and (min-width: 769px) {
+        padding-bottom: 26px;
+      }
     }
 
     &_subtitle {
       @extend %subtitle-styles;
+
+      @media screen and (min-width: 624px) {
+        font-size: 12px;
+        line-height: 18px;
+      }
+
+      @media screen and (min-width: 624px) {
+        font-size: 14px;
+        line-height: 20px;
+      }
     }
   }
 
   &__schedule {
-    display: flex;
-    margin: 60px 0 0;
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) 4fr;
+    grid-template-rows: auto;
+
+    @media screen and (min-width: 624px) {
+      grid-template-columns: minmax(140px, 1fr) 4fr;
+    }
+
+    @media screen and (min-width: 624px) {
+      grid-template-columns: minmax(228px, 1fr) 4fr;
+    }
 
     &_el {
       text-align: center;
 
       &_1 {
-        width: 100px;
         background-color: #3ddc84;
+        color: #000;
       }
 
       &_2 {
-        width: 184px;
         background-color: #303030;
       }
     }
 
     &_title {
       @extend %title-styles;
-      height: 35px;
       font-size: 11px;
-      line-height: 13.31px;
-      padding-top: 11px;
+      line-height: 13px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       box-sizing: border-box;
+      height: 35px;
+
+      @media screen and (min-width: 624px) {
+        font-size: 14px;
+        line-height: 17px;
+        height: 36px;
+      }
     }
 
     &_subtitle {
@@ -69,6 +137,12 @@
       padding-top: 10px;
       background-color: #202020;
       color: #a0a0a0;
+
+      @media screen and (min-width: 624px) {
+        font-size: 14px;
+        line-height: 17px;
+        padding-top: 14px;
+      }
     }
   }
 }
