@@ -12,31 +12,35 @@ function Student() {
           src={foto}
           alt="Фотография автора"
         />
-        <h3 className="student__about_title">Роман</h3>
-        <p className="student__about_subtitle">Фронтенд-разработчик, 27 лет</p>
-        <p className="student__about_description">
-          Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня
-          есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом.
-          Недавно начал кодить. С 2015 года работал в компании «СКБ Контур».
-          После того, как прошёл курс по веб-разработке, начал заниматься
-          фриланс-заказами и ушёл с постоянной работы.
-        </p>
-        <footer className="student__about_contacts">
-          <nav className="student__about_nav">
-            <ul className="student__about_menu">
-              <li className="student__about_item">
-                <a className="student__about_link" href="#">
-                  Facebook
-                </a>
-              </li>
-              <li className="student__about_item">
-                <a className="student__about_link" href="#">
-                  Github
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </footer>
+        <div className="student__about_img-caption">
+          <h3 className="student__about_title">Роман</h3>
+          <p className="student__about_subtitle">
+            Фронтенд-разработчик, 27 лет
+          </p>
+          <p className="student__about_description">
+            Я родился и живу в Саратове, закончил факультет экономики СГУ. У
+            меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь
+            бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ
+            Контур». После того, как прошёл курс по веб-разработке, начал
+            заниматься фриланс-заказами и ушёл с постоянной работы.
+          </p>
+          <footer className="student__about_contacts">
+            <nav className="student__about_nav">
+              <ul className="student__about_menu">
+                <li className="student__about_item">
+                  <a className="student__about_link" href="#">
+                    Facebook
+                  </a>
+                </li>
+                <li className="student__about_item">
+                  <a className="student__about_link" href="#">
+                    Github
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </footer>
+        </div>
       </section>
 
       <section className="student__portfolio">
@@ -46,13 +50,17 @@ function Student() {
             <li className="student__portfolio_item">
               <a className="student__portfolio_link" href="#">
                 Статичный сайт
-                <div className="student__portfolio_icon" />
+              </a>
+              <a className="student__portfolio_link" href="#">
+                ↗
               </a>
             </li>
             <li className="student__portfolio_item">
               <a className="student__portfolio_link" href="#">
                 Адаптивный сайт
-                <div className="student__portfolio_icon" />
+              </a>
+              <a className="student__portfolio_link" href="#">
+                ↗
               </a>
             </li>
             <li className="student__portfolio_item">
@@ -61,7 +69,9 @@ function Student() {
                 href="https://github.com/BeellCranel/react-mesto-auth"
               >
                 Одностраничное приложение
-                <div className="student__portfolio_icon" />
+              </a>
+              <a className="student__portfolio_link" href="#">
+                ↗
               </a>
             </li>
           </ul>
