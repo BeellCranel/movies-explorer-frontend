@@ -10,14 +10,42 @@
 .footer {
   padding: 79px 10px 10px;
 
+  @media screen and (min-width: 624px) {
+    padding: 79px 30px 20px;
+  }
+
+  @media screen and (min-width: 806px) {
+    padding: 79px 70px 20px;
+  }
+
   &__title {
     @extend %text-style;
     padding-bottom: 21px;
     border-bottom: 1px solid #424242;
+
+    @media screen and (min-width: 624px) {
+      font-size: 13px;
+      line-height: 16px;
+      padding-bottom: 20px;
+    }
+  }
+
+  &__container {
+    @media screen and (min-width: 624px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row-reverse;
+      padding-top: 20px;
+    }
   }
 
   &__nav {
     padding: 30px 0;
+
+    @media screen and (min-width: 624px) {
+      padding: 0;
+    }
 
     &_menu {
       display: flex;
@@ -27,16 +55,32 @@
       list-style: none;
       padding: 0;
       margin: 0;
+
+      @media screen and (min-width: 624px) {
+        flex-direction: row;
+        gap: 20px;
+      }
     }
 
     &_link {
       text-decoration: none;
       @extend %text-style;
       color: #fff;
+
+      @media screen and (min-width: 624px) {
+        font-size: 13px;
+        line-height: 16px;
+      }
     }
   }
 
   &__author {
     @extend %text-style;
+
+    @media screen and (min-width: 624px) {
+      font-size: 13px;
+      line-height: 16px;
+      color: #fff;
+    }
   }
 }
