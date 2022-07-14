@@ -3,6 +3,9 @@
   align-items: center;
   justify-content: center;
   gap: 13px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
 
   &:hover {
     cursor: pointer;
@@ -17,7 +20,7 @@
     }
 
     &:focus + .check__box {
-      box-shadow: 0 0 1rem #3DDC84;
+      box-shadow: 0 0 1rem #3ddc84;
     }
   }
 
@@ -25,7 +28,7 @@
     width: 36px;
     height: 20px;
     border-radius: 20px;
-    background-color: #3DDC84;
+    background-color: #3ddc84;
     display: flex;
     justify-content: flex-start;
     align-items: center;
