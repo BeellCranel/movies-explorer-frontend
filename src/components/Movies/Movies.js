@@ -1,5 +1,6 @@
 import "./Movies.scss";
 import SearchForm from "../SearchForm/SearchForm";
+import Cards from "../Cards/Cards";
 import Footer from "../Footer/Footer";
 
 function Movies() {
@@ -7,6 +8,7 @@ function Movies() {
     <>
       <main className="content">
         <SearchForm />
+        <Cards />
       </main>
       <Footer />
     </>
