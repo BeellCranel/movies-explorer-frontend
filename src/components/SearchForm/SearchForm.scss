@@ -1,0 +1,52 @@
+.search-form {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 81px 14px 10px;
+  box-sizing: border-box;
+
+  &__form-container {
+    box-sizing: border-box;
+    padding-bottom: 43px;
+    border-bottom: 1px solid #424242;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 44px;
+  }
+
+  &__fieldset {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__el {
+    box-sizing: border-box;
+    border-style: none;
+    border-radius: 4px;
+    height: 44px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #fff;
+
+    &_input {
+      padding: 0 16px;
+      background-color: #2f2f2f;
+      width: calc(100% - 80px);
+    }
+
+    &_submit {
+      font-weight: 500;
+      width: 70px;
+      border-radius: 40px;
+      background-color: #4285f4;
+    }
+  }
+}
