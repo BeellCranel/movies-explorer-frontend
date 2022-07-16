@@ -10,7 +10,7 @@ function CustomCheckBox() {
         name="short-films"
         defaultChecked
       />
-      <span className="check__box">
+      <span className="check__box opacity">
         <span className="check__box_item" />
       </span>
       Короткометражки

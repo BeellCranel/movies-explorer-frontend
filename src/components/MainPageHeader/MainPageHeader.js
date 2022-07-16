@@ -11,17 +11,17 @@ function MainPageNav() {
         <nav className="main-page-header__nav-menu">
           <ul className="main-page-header__menu">
             <li className="main-page-header__menu_item">
-              <a href="#about" className="main-page-header__menu_link">
+              <a href="#about" className="main-page-header__menu_link opacity">
                 О проекте
               </a>
             </li>
             <li className="main-page-header__menu_item">
-              <a href="#technologies" className="main-page-header__menu_link">
+              <a href="#technologies" className="main-page-header__menu_link opacity">
                 Технологии
               </a>
             </li>
             <li className="main-page-header__menu_item">
-              <a href="#student" className="main-page-header__menu_link">
+              <a href="#student" className="main-page-header__menu_link opacity">
                 Студент
               </a>
             </li>

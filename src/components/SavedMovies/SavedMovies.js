@@ -1,20 +1,18 @@
-import "./Movies.scss";
+import "./SavedMovies.scss";
 import SearchForm from "../SearchForm/SearchForm";
-import Cards from "../Cards/Cards";
+import CardsSaved from "../CardsSaved/CardsSaved";
 import Footer from "../Footer/Footer";
-import MoreButton from "../MoreButton/MoreButton";
 
-function Movies() {
+function SavedMovies() {
   return (
     <>
       <main className="content">
         <SearchForm />
-        <Cards />
-        <MoreButton />
+        <CardsSaved />
       </main>
       <Footer />
     </>
   );
 }
 
-export default Movies;
+export default SavedMovies;

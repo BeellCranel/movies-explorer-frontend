@@ -9,8 +9,10 @@
 
 .footer {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 0 auto ;
+  box-sizing: border-box;
   padding: 79px 10px 10px;
+  vertical-align: bottom;
 
   @media screen and (min-width: 624px) {
     padding: 79px 30px 20px;

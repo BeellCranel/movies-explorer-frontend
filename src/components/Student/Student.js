@@ -28,12 +28,22 @@ function Student() {
             <nav className="student__about_nav">
               <ul className="student__about_menu">
                 <li className="student__about_item">
-                  <a className="student__about_link" href="#">
-                    Facebook
+                  <a
+                    className="student__about_link opacity"
+                    href="https://vk.com/mine666"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    VKontakte
                   </a>
                 </li>
                 <li className="student__about_item">
-                  <a className="student__about_link" href="#">
+                  <a
+                    className="student__about_link opacity"
+                    href="https://github.com/BeellCranel"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Github
                   </a>
                 </li>
@@ -48,29 +58,56 @@ function Student() {
         <nav className="student__portfolio_nav">
           <ul className="student__portfolio_menu">
             <li className="student__portfolio_item">
-              <a className="student__portfolio_link" href="#">
+              <a
+                className="student__portfolio_link opacity"
+                href="https://github.com/BeellCranel/how-to-learn"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Статичный сайт
               </a>
-              <a className="student__portfolio_link" href="#">
-                ↗
-              </a>
-            </li>
-            <li className="student__portfolio_item">
-              <a className="student__portfolio_link" href="#">
-                Адаптивный сайт
-              </a>
-              <a className="student__portfolio_link" href="#">
+              <a
+                className="student__portfolio_link opacity"
+                href="https://github.com/BeellCranel/how-to-learn"
+                target="_blank"
+                rel="noreferrer"
+              >
                 ↗
               </a>
             </li>
             <li className="student__portfolio_item">
               <a
-                className="student__portfolio_link"
+                className="student__portfolio_link opacity"
+                href="https://github.com/BeellCranel/russian-travel"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Адаптивный сайт
+              </a>
+              <a
+                className="student__portfolio_link opacity"
+                href="https://github.com/BeellCranel/russian-travel"
+                target="_blank"
+                rel="noreferrer"
+              >
+                ↗
+              </a>
+            </li>
+            <li className="student__portfolio_item">
+              <a
+                className="student__portfolio_link opacity"
                 href="https://github.com/BeellCranel/react-mesto-auth"
+                target="_blank"
+                rel="noreferrer"
               >
                 Одностраничное приложение
               </a>
-              <a className="student__portfolio_link" href="#">
+              <a
+                className="student__portfolio_link opacity"
+                href="https://github.com/BeellCranel/react-mesto-auth"
+                target="_blank"
+                rel="noreferrer"
+              >
                 ↗
               </a>
             </li>

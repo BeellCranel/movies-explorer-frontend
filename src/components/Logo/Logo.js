@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Logo() {
   return (
-    <Link className="logo" to="/" />
+    <Link className="logo opacity" to="/" />
   );
 }
 

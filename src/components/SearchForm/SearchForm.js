@@ -15,7 +15,7 @@ function SearchForm() {
             placeholder="Фильм"
           />
           <input
-            className="search-form__el search-form__el_submit"
+            className="search-form__el search-form__el_submit opacity"
             type="submit"
             name="submit"
             value="Найти"

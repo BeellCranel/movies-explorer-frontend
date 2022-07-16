@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
@@ -18,10 +19,6 @@ function App() {
 
   //<Route path="/signin"></Route>
 
-  //<Route path="/movies"></Route>
-
-  //<Route path="/saved-movies"></Route>
-
   //<Route path="/profile"></Route>
 
   return (
@@ -31,6 +28,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Main />} />
             <Route path="/movies" element={<Movies />} />
+            <Route path="/saved-movies" element={<SavedMovies />} />
           </Route>
         </Routes>
       </div>

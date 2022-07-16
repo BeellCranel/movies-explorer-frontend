@@ -9,6 +9,7 @@ function NavBar() {
       <Routes>
         <Route path="/" element={<NavElUnlogged />} />
         <Route path="/movies" element={<NavEl />} />
+        <Route path="/saved-movies" element={<NavEl />} />
       </Routes>
     </nav>
   );

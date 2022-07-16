@@ -49,22 +49,31 @@
     line-height: 9px;
     color: #fff;
 
-
-    &_active {
-      width: 21px;
-      height: 21px;
-      border-radius: 30px;
-      font-size: 0;
-      background-image: url("../../images/saved-movie-icon.svg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-color: #ee3465;
+    &:hover {
+      cursor: pointer;
     }
+  }
+
+  &__saved {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 21px;
+    height: 21px;
+    border-radius: 30px;
+    background-image: url("../../images/saved-movie-icon.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #ee3465;
   }
 
   &__image {
     width: 300px;
     border-radius: 7px;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     @media screen and (min-width: 624px) {
       width: 339px;
@@ -86,11 +95,15 @@
       line-height: 15px;
       font-weight: 500px;
       margin: 0;
-      padding-right: 8px;
+      box-sizing: border-box;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 250px;
 
       @media screen and (min-width: 624px) {
         font-size: 13px;
-      line-height: 16px;
+        line-height: 16px;
       }
     }
 

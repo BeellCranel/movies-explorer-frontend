@@ -10,18 +10,33 @@ function Footer() {
         <nav className="footer__nav">
           <ul className="footer__nav_menu">
             <li className="footer__nav_item">
-              <a className="footer__nav_link" href="#">
+              <a
+                className="footer__nav_link opacity"
+                href="https://practicum.yandex.ru/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Яндекс.Практикум
               </a>
             </li>
             <li className="footer__nav_item">
-              <a className="footer__nav_link" href="#">
+              <a
+                className="footer__nav_link opacity"
+                href="https://github.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Github
               </a>
             </li>
             <li className="footer__nav_item">
-              <a className="footer__nav_link" href="#">
-                Facebook
+              <a
+                className="footer__nav_link opacity"
+                href="https://vk.com/yandex.practicum"
+                target="_blank"
+                rel="noreferrer"
+              >
+                VKontakte
               </a>
             </li>
           </ul>
