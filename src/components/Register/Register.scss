@@ -1,0 +1,153 @@
+.register {
+  max-width: 260px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 0 30px;
+  min-height: 100vh;
+
+  @media screen and (min-width: 624px) {
+    max-width: 396px;
+    align-items: flex-start;
+    padding: 232px 0;
+  }
+
+  @media screen and (min-width: 806px) {
+    padding: 70px 0;
+  }
+}
+
+.form {
+  margin: 50px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (min-width: 624px) {
+    margin-top: 40px;
+  }
+
+  &__title {
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 500;
+
+    @media screen and (min-width: 624px) {
+      align-self: flex-start;
+    }
+  }
+
+  &__feildset {
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 80px 0 157px;
+
+    @media screen and (min-width: 624px) {
+      padding: 40px 0 69px;
+    }
+  }
+
+  &__label {
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 400;
+    color: #8b8b8b;
+    width: 100%;
+
+    &:last-child {
+      padding-bottom: 53px;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    border-style: none;
+    border-bottom: 1px solid #424242;
+    background-color: transparent;
+    padding: 5px 0 10px;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+    color: #fff;
+
+    &:focus {
+      outline: 0;
+      outline-offset: 0;
+      border-bottom: 1px solid #4285f4;
+    }
+
+    &_error {
+      color: #ee3465;
+    }
+  }
+
+  &__error {
+    display: block;
+    min-height: 24px;
+    padding-top: 6px;
+    margin: 0;
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 400;
+    color: #ee3465;
+  }
+
+  &__submit {
+    width: 260px;
+    height: 45px;
+    border: none;
+    background-color: #4285f4;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+    color: #fff;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @media screen and (min-width: 624px) {
+      width: 396px;
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+
+  &__link {
+    padding-top: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+
+    @media screen and (min-width: 624px) {
+      gap: 6px;
+      padding-top: 16px;
+      font-size: 14px;
+      line-height: 17px;
+    }
+
+    &_label {
+      margin: 0;
+      color: #8b8b8b;
+    }
+
+    &_link {
+      text-decoration: none;
+      color: #4285f4;
+    }
+  }
+}
