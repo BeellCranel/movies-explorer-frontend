@@ -1,0 +1,111 @@
+.profile {
+  box-sizing: border-box;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 70px 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (min-width: 624px) {
+    padding: 236px 0 269px;
+  }
+
+  @media screen and (min-width: 806px) {
+    padding: 74px 0 70px;
+  }
+
+  &__title {
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__container {
+    box-sizing: border-box;
+    max-width: 260px;
+    padding: 80px 0 379px;
+    width: 100%;
+
+    @media screen and (min-width: 624px) {
+      max-width: 410px;
+      padding: 96px 0 210px;
+    }
+
+    @media screen and (min-width: 806px) {
+      padding: 123px 0 220px;
+    }
+  }
+
+  &__el {
+    padding: 17px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #424242;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 500;
+    box-sizing: border-box;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border: none;
+    }
+  }
+
+  &__item {
+    margin: 0;
+    padding: 0;
+
+    &_value {
+      font-weight: 400;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__edit-btn {
+    text-align: center;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @media screen and (min-width: 624px) {
+      font-size: 13px;
+      line-height: 16px;
+    }
+  }
+
+  &__link {
+    text-align: center;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #ee3465;
+
+    @media screen and (min-width: 624px) {
+      font-size: 13px;
+      line-height: 16px;
+    }
+  }
+}
