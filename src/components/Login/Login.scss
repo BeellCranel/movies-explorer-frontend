@@ -1,0 +1,27 @@
+.login {
+  max-width: 260px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 0 30px;
+  min-height: 100vh;
+
+  @media screen and (min-width: 624px) {
+    max-width: 396px;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+.form {
+  &__label {
+    &_login {
+      &:last-child {
+        padding-bottom: 128px;
+      }
+    }
+  }
+}

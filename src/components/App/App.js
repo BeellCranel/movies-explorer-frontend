@@ -8,6 +8,7 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
+import Login from "../Login/Login";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
@@ -16,12 +17,6 @@ function App() {
     name: "Roma",
     email: "test@test.ru",
   });
-
-  //<Route path="/signup"></Route>
-
-  //<Route path="/signin"></Route>
-
-  //<Route path="/profile"></Route>
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -34,6 +29,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="/sign-up" element={<Register />} />
+          <Route path="/sign-in" element={<Login />} />
         </Routes>
       </div>
     </CurrentUserContext.Provider>
