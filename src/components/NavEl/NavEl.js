@@ -21,7 +21,7 @@ function NavEl() {
         className="nav-el nav-el__account nav-el__closing opacity"
         to="/profile"
       >
-        <div className="acc-icon"></div>
+        <div className="acc-icon" />
         Аккаунт
       </Link>
       <NavBTN />

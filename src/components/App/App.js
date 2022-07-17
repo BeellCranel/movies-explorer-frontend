@@ -10,6 +10,7 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
+import NavPopup from "../NavPopup/NavPopup";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/sign-in" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <NavPopup />
       </div>
     </CurrentUserContext.Provider>
   );
