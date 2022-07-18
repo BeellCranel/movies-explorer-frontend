@@ -1,8 +1,24 @@
 import "./Login.scss";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
 function Login() {
+  const [userData, setUserData] = useState({
+    email: "pochta@yandex.ru",
+    password: "",
+  });
+
+  const { email, password } = userData;
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  }
+
   return (
     <section className="login">
       <Logo />
@@ -16,7 +32,8 @@ function Login() {
               id="email"
               type="email"
               name="email"
-              value="pochta@yandex.ru"
+              value={email}
+              onChange={handleChange}
               placeholder=""
               required
             />
@@ -29,7 +46,8 @@ function Login() {
               id="password"
               type="password"
               name="password"
-              value=""
+              value={password}
+              onChange={handleChange}
               placeholder=""
               required
             />

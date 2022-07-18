@@ -26,9 +26,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Main />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/saved-movies" element={<SavedMovies />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="movies" element={<Movies />} />
+            <Route path="saved-movies" element={<SavedMovies />} />
+            <Route path="profile" element={<Profile />} />
           </Route>
           <Route path="/sign-up" element={<Register />} />
           <Route path="/sign-in" element={<Login />} />

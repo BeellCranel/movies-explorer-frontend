@@ -1,6 +1,5 @@
 import "./NavEl.scss";
 import { Link } from "react-router-dom";
-import NavBTN from "../NavBTN/NavBTN";
 
 function NavEl() {
   return (
@@ -24,7 +23,7 @@ function NavEl() {
         <div className="acc-icon" />
         Аккаунт
       </Link>
-      <NavBTN />
+      <button className="nav-btn opacity" type="button" />
     </>
   );
 }

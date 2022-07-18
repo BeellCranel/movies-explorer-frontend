@@ -1,8 +1,25 @@
 import "./Register.scss";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
 function Register() {
+  const [userData, setUserData] = useState({
+    name: "Roman",
+    email: "pochta@yandex.ru",
+    password: "pochta@yandex.ru",
+  });
+
+  const { name, email, password } = userData;
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  }
+
   return (
     <section className="register">
       <Logo />
@@ -14,9 +31,10 @@ function Register() {
             <input
               className="form__input"
               id="name"
-              type="name"
-              name="text"
-              value="Roman"
+              type="text"
+              name="name"
+              value={name}
+              onChange={handleChange}
               placeholder=""
               required
             />
@@ -29,7 +47,8 @@ function Register() {
               id="email"
               type="email"
               name="email"
-              value="pochta@yandex.ru"
+              value={email}
+              onChange={handleChange}
               placeholder=""
               required
             />
@@ -42,7 +61,8 @@ function Register() {
               id="password"
               type="password"
               name="password"
-              value="pochta@yandex.ru"
+              value={password}
+              onChange={handleChange}
               placeholder=""
               required
             />

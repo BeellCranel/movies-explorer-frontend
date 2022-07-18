@@ -1,7 +1,13 @@
 import "./SearchForm.scss";
+import React, { useState } from "react";
 import CustomCheckBox from "../CustomCheckBox/CustomCheckBox";
 
 function SearchForm() {
+  const [movieData, setMovieData] = useState("");
+
+  function handleChangeMovie(e) {
+    setMovieData(e.target.value);
+  }
   return (
     <section className="search-form">
       <form className="search-form__form-container">
@@ -11,7 +17,8 @@ function SearchForm() {
             id="search-movie"
             type="text"
             name="movie"
-            value=""
+            value={movieData}
+            onChange={handleChangeMovie}
             placeholder="Фильм"
           />
           <input
