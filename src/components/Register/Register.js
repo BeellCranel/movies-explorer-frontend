@@ -6,7 +6,7 @@ function Register() {
   return (
     <section className="register">
       <Logo />
-      <form className="form">
+      <form className="form" name="register">
         <h1 className="form__title">Добро пожаловать!</h1>
         <fieldset className="form__feildset">
           <label className="form__label">

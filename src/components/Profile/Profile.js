@@ -1,28 +1,65 @@
 import "./Profile.scss";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Profile() {
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+  });
+
+  const { name, email } = userData;
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  }
   return (
     <section className="profile">
-      <h1 className="profile__title">Привет, Роман</h1>
-      <div className="profile__container">
-        <div className="profile__el">
-          <p className="profile__item profile__item_lable">Имя</p>
-          <p className="profile__item profile__item_value">Роман</p>
+      <form className="profile-form" name="profile">
+        <h1 className="profile-form__title">Привет, Роман</h1>
+        <fieldset className="profile-form__fieldset">
+          <label className="profile-form__lable">
+            Имя
+            <input
+              className="profile-form__input"
+              id="name"
+              type="text"
+              name="name"
+              value={name}
+              onChange={handleChange}
+              placeholder="Роман"
+            />
+          </label>
+          <label className="profile-form__lable">
+            E-mail
+            <input
+              className="profile-form__input"
+              id="email"
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="pochta@yandex.ru"
+            />
+          </label>
+        </fieldset>
+
+        <div className="profile-form__bottom">
+          <input
+            className="profile-form__submit opacity"
+            type="submit"
+            name="submit"
+            value="Редактировать"
+          />
+          <Link className="profile-form__link opacity" to="/sign-in">
+            Выйти из аккаунта
+          </Link>
         </div>
-        <div className="profile__el">
-          <p className="profile__item profile__item_lable">E-mail</p>
-          <p className="profile__item profile__item_value">pochta@yandex.ru</p>
-        </div>
-      </div>
-      <div className="profile__bottom">
-        <button className="profile__edit-btn opacity" type="button">
-          Редактировать
-        </button>
-        <Link className="profile__link opacity" to="/sign-in">
-          Выйти из аккаунта
-        </Link>
-      </div>
+      </form>
     </section>
   );
 }
