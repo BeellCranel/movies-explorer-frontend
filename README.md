@@ -5,7 +5,7 @@
 ### Функционал:
 
 - Адаптивная верстка
-- Ауткнтификация и авторизация пользователей
+- Аутентификация и авторизация пользователей
 - Редактирование своего профиля
 - Поиск и отображение карточек с фильмами
 - Сохранение и удаление карточек
@@ -18,6 +18,11 @@
 ![html5](https://img.shields.io/badge/-HTML5-090909?style=flat&logo=html5)
 ![npm](https://img.shields.io/badge/-npm-090909?style=flat&logo=npm)
 ![git](https://img.shields.io/badge/-git-090909?style=flat&logo=git)
+
+### Интро
+
+- домен: my-website.nomoredomains.xyz
+- макет: ...
 
 ### Статус
 
