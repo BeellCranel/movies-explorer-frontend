@@ -1,4 +1,4 @@
-# Frontendдля дипломной работы
+# Frontend для дипломной работы
 
 ## О работе
 
@@ -23,7 +23,7 @@
 
 - [ссылка на мою работу](https://my-website.nomoredomains.xyz/)
 - домен: my-website.nomoredomains.xyz
-- [макет](https://www.figma.com/file/OupRBd44p0uRa0TWOaD8Xg/Diploma-(Copy)?node-id=932%3A3593)
+- [макет](<https://www.figma.com/file/OupRBd44p0uRa0TWOaD8Xg/Diploma-(Copy)?node-id=932%3A3593>)
 
 ### Статус
 
