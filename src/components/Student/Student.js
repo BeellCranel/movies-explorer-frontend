@@ -33,6 +33,7 @@ function Student() {
                     href="https://vk.com/mine666"
                     target="_blank"
                     rel="noreferrer"
+                    lang="en"
                   >
                     VKontakte
                   </a>
@@ -43,6 +44,7 @@ function Student() {
                     href="https://github.com/BeellCranel"
                     target="_blank"
                     rel="noreferrer"
+                    lang="en"
                   >
                     Github
                   </a>

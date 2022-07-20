@@ -25,6 +25,7 @@ function Footer() {
                 href="https://github.com/"
                 target="_blank"
                 rel="noreferrer"
+                lang="en"
               >
                 Github
               </a>
@@ -35,6 +36,7 @@ function Footer() {
                 href="https://vk.com/yandex.practicum"
                 target="_blank"
                 rel="noreferrer"
+                lang="en"
               >
                 VKontakte
               </a>

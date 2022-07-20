@@ -20,7 +20,7 @@ export const movies = [
   },
   {
     link: years,
-    name: "Киноальманах «100 лет дизайна",
+    name: "Киноальманах «100 лет дизайна»",
     duration: "1ч 17м",
     saved: true,
   },

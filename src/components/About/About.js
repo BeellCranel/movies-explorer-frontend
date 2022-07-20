@@ -28,11 +28,15 @@ function About() {
       <div className="about__schedule">
         <section className="about__schedule_el about__schedule_el_1">
           <h3 className="about__schedule_title">1 неделя</h3>
-          <p className="about__schedule_subtitle">Back-end</p>
+          <p className="about__schedule_subtitle" lang="en">
+            Back-end
+          </p>
         </section>
         <section className="about__schedule_el about__schedule_el_2">
           <h3 className="about__schedule_title">4 недели</h3>
-          <p className="about__schedule_subtitle">Front-end</p>
+          <p className="about__schedule_subtitle" lang="en">
+            Front-end
+          </p>
         </section>
       </div>
     </section>

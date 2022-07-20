@@ -20,6 +20,7 @@ function SearchForm() {
             value={movieData}
             onChange={handleChangeMovie}
             placeholder="Фильм"
+            required
           />
           <input
             className="search-form__el search-form__el_submit opacity"

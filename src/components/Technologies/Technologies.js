@@ -14,13 +14,27 @@ function Technologies() {
         </p>
 
         <section className="technologies__kinds_stack">
-          <p className="technologies__kinds_item">HTML</p>
-          <p className="technologies__kinds_item">CSS</p>
-          <p className="technologies__kinds_item">JS</p>
-          <p className="technologies__kinds_item">React</p>
-          <p className="technologies__kinds_item">Git</p>
-          <p className="technologies__kinds_item">Express.js</p>
-          <p className="technologies__kinds_item">mongoDB</p>
+          <p className="technologies__kinds_item" lang="en">
+            HTML
+          </p>
+          <p className="technologies__kinds_item" lang="en">
+            CSS
+          </p>
+          <p className="technologies__kinds_item" lang="en">
+            JS
+          </p>
+          <p className="technologies__kinds_item" lang="en">
+            React
+          </p>
+          <p className="technologies__kinds_item" lang="en">
+            Git
+          </p>
+          <p className="technologies__kinds_item" lang="en">
+            Express.js
+          </p>
+          <p className="technologies__kinds_item" lang="en">
+            mongoDB
+          </p>
         </section>
       </section>
     </section>
