@@ -1,0 +1,39 @@
+%text-style {
+  font-size: 10px;
+  line-height: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.nav-el {
+  color: #fff;
+  text-decoration: none;
+
+  &__signup {
+    @extend %text-style;
+
+    @media screen and (min-width: 624px) {
+      font-size: 12px;
+    }
+  }
+
+  &__signin{
+    @extend %text-style;
+    box-sizing: border-box;
+    margin: 0 0 0 14px;
+    width: 54px;
+    height: 26px;
+    background-color: #3DDC84;
+    border-radius: 3px;
+    padding: 5px 0;
+    color: #000;
+
+    @media screen and (min-width: 624px) {
+      font-size: 12px;
+      margin-left: 30px;
+      width: 76px;
+      height: 32px;
+      padding: 8px 0;
+    }
+  }
+}

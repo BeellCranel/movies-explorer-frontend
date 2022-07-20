@@ -1,0 +1,32 @@
+.app {
+  background-color: #202020;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  color: #fff;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.6;
+  }
+}
+
+.opacity {
+  &:hover {
+    animation: opacity 0.3s ease forwards;
+  }
+}

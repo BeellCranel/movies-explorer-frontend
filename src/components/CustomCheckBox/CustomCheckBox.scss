@@ -1,0 +1,44 @@
+.check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+
+  &__input {
+    position: absolute;
+    appearance: none;
+
+    &:checked + .check__box {
+      justify-content: flex-end;
+    }
+
+    &:focus + .check__box {
+      box-shadow: 0 0 1rem #3ddc84;
+    }
+  }
+
+  &__box {
+    width: 36px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #3ddc84;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 2px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &_item {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #fff;
+    }
+  }
+}

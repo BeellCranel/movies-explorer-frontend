@@ -1,0 +1,134 @@
+.profile {
+  box-sizing: border-box;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 70px 0 40px;
+
+  @media screen and (min-width: 624px) {
+    padding: 236px 0 269px;
+  }
+
+  @media screen and (min-width: 806px) {
+    padding: 74px 0 70px;
+  }
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__fieldset {
+    box-sizing: border-box;
+    max-width: 260px;
+    padding: 70px 0 369px;
+    width: 100%;
+    margin: 0;
+    border: none;
+
+    @media screen and (min-width: 624px) {
+      max-width: 410px;
+      padding: 86px 0 200px;
+    }
+
+    @media screen and (min-width: 806px) {
+      padding: 113px 0 210px;
+    }
+  }
+
+  &__lable {
+    font-size: 11px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 0 6px;
+    border-bottom: 1px solid #424242;
+    box-sizing: border-box;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border: none;
+    }
+  }
+
+  &__input {
+    width: 200px;
+    text-align: end;
+    margin: 0;
+    padding: 10px 0 9px;
+    border: none;
+    border-bottom: 1px solid transparent;
+    font-weight: 400;
+    background-color: #202020;
+    color: #fff;
+
+    &::placeholder {
+      color: #fff;
+    }
+
+    &:focus {
+      outline: 0;
+      outline-offset: 0;
+      border-bottom: 1px solid #4285f4;
+    }
+
+    @media screen and (min-width: 624px) {
+      width: 350px;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__submit {
+    text-align: center;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    padding: 0;
+    margin: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @media screen and (min-width: 624px) {
+      font-size: 13px;
+      line-height: 16px;
+    }
+  }
+
+  &__link {
+    text-align: center;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #ee3465;
+
+    @media screen and (min-width: 624px) {
+      font-size: 13px;
+      line-height: 16px;
+    }
+  }
+}
