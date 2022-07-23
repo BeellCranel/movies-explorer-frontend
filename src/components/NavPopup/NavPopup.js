@@ -1,11 +1,18 @@
 import "./NavPopup.scss";
 import { Link } from "react-router-dom";
 
-function NavPopup() {
+function NavPopup({ isOpen, onClose }) {
+  const navPopupClassName = `nav-popup${isOpen ? " nav-popup__opened" : ""}`;
+  function handleOnClose(e) {
+    if (e.target.classList.contains("nav-popup__opened")) {
+      onClose();
+    }
+  }
+
   return (
-    <div className="nav-popup">
+    <div className={navPopupClassName} onClick={handleOnClose}>
       <div className="nav-popup__container">
-        <button className="nav-popup__close-btn opacity" />
+        <button className="nav-popup__close-btn opacity" onClick={onClose} />
         <nav className="nav-popup__menu">
           <ul className="nav-popup__list">
             <li className="nav-popup__item">

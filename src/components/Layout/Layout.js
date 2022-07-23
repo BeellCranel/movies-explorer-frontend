@@ -2,10 +2,10 @@ import "./Layout.scss";
 import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
 
-function Layout() {
+function Layout({ onOpen }) {
   return (
     <>
-      <Header />
+      <Header onOpen={onOpen} />
       <Outlet />
     </>
   );
