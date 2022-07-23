@@ -1,34 +1,38 @@
 import "./SearchForm.scss";
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import CustomCheckBox from "../CustomCheckBox/CustomCheckBox";
 
 function SearchForm() {
-  const [movieData, setMovieData] = useState("");
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
-  function handleChangeMovie(e) {
-    setMovieData(e.target.value);
+  function onSubmit(data) {
+    console.log(data);
   }
   return (
     <section className="search-form">
-      <form className="search-form__form-container">
+      <form
+        className="search-form__form-container"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <fieldset className="search-form__fieldset">
           <input
             className="search-form__el search-form__el_input"
-            id="search-movie"
-            type="text"
-            name="movie"
-            value={movieData}
-            onChange={handleChangeMovie}
             placeholder="Фильм"
-            required
+            {...register("movie", {
+              required: "Нужно ввести ключевое слово",
+            })}
           />
           <input
             className="search-form__el search-form__el_submit opacity"
             type="submit"
-            name="submit"
             value="Найти"
           />
         </fieldset>
+        <span className="search-form__error">{errors?.movie?.message}</span>
         <CustomCheckBox />
       </form>
     </section>
