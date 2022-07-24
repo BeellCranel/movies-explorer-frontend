@@ -143,6 +143,10 @@
 
     &_disabled {
       opacity: 0.5;
+
+      &:hover {
+        cursor: auto;
+      }
     }
   }
 

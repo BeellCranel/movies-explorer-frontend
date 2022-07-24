@@ -1,5 +1,6 @@
 import "./Login.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
@@ -8,57 +9,82 @@ function Login() {
     email: "pochta@yandex.ru",
     password: "",
   });
+  const {
+    register,
+    formState: { errors, isValid, isDirty },
+    handleSubmit,
+    reset,
+  } = useForm({ mode: "onChange" });
 
-  const { email, password } = userData;
-
-  function handleChange(e) {
-    const { name, value } = e.target;
+  function onSubmit(data) {
+    alert(JSON.stringify(data));
     setUserData({
-      ...userData,
-      [name]: value,
+      email: data.email,
+      password: data.password,
     });
+    reset();
   }
+
+  const submitBtnClassName = `form__submit ${
+    !isValid ? "form__submit_disabled" : "opacity"
+  }`;
+
+  const inputEmailClassName = `form__input${
+    errors.email && isDirty ? " form__input_error" : ""
+  }`;
+
+  const inputPasswordClassName = `form__input${
+    errors.password && isDirty ? " form__input_error" : ""
+  }`;
 
   return (
     <section className="login">
       <Logo />
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <h1 className="form__title">Рады видеть!</h1>
         <fieldset className="form__feildset">
           <label className="form__label">
             E-mail
             <input
-              className="form__input"
-              id="email"
+              className={inputEmailClassName}
               type="email"
-              name="email"
-              value={email}
-              onChange={handleChange}
-              placeholder=""
-              required
+              {...register("email", {
+                required: "Поле обязательно к заполнению",
+                pattern: {
+                  value:
+                    /^((([0-9A-Za-z]{1}[-0-9A-z\.]{0,30}[0-9A-Za-z]?)|([0-9А-Яа-я]{1}[-0-9А-я\.]{0,30}[0-9А-Яа-я]?))@([-A-Za-z]{1,}\.){1,}[-A-Za-z]{2,})$/i,
+                  message: "Введите корректный адрес электронной почты",
+                },
+              })}
             />
-            <span className="form__error" id="email-error"></span>
+            <span className="form__error">{errors?.email?.message}</span>
           </label>
           <label className="form__label form__label_login">
             Пароль
             <input
-              className="form__input"
-              id="password"
+              className={inputPasswordClassName}
               type="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-              placeholder=""
-              required
+              {...register("password", {
+                required: "Поле обязательно к заполнению",
+                minLength: {
+                  value: 2,
+                  message: "Минимум 2 символа",
+                },
+                maxLength: {
+                  value: 30,
+                  message: "Максимум 30 символов",
+                },
+              })}
             />
-            <span className="form__error" id="email-error"></span>
+            <span className="form__error">{errors?.password?.message}</span>
           </label>
         </fieldset>
         <input
-          className="form__submit opacity"
+          className={submitBtnClassName}
           type="submit"
           name="submit"
           value="Войти"
+          disabled={!isValid}
         />
         <div className="form__link">
           <p className="form__link_label">Ещё не зарегистрированы?</p>
