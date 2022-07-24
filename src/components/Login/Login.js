@@ -1,14 +1,9 @@
 import "./Login.scss";
-import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
 function Login() {
-  const [userData, setUserData] = useState({
-    email: "pochta@yandex.ru",
-    password: "",
-  });
   const {
     register,
     formState: { errors, isValid, isDirty },
@@ -18,10 +13,6 @@ function Login() {
 
   function onSubmit(data) {
     alert(JSON.stringify(data));
-    setUserData({
-      email: data.email,
-      password: data.password,
-    });
     reset();
   }
 
@@ -52,6 +43,7 @@ function Login() {
                 required: "Поле обязательно к заполнению",
                 pattern: {
                   value:
+                    // eslint-disable-next-line no-useless-escape
                     /^((([0-9A-Za-z]{1}[-0-9A-z\.]{0,30}[0-9A-Za-z]?)|([0-9А-Яа-я]{1}[-0-9А-я\.]{0,30}[0-9А-Яа-я]?))@([-A-Za-z]{1,}\.){1,}[-A-Za-z]{2,})$/i,
                   message: "Введите корректный адрес электронной почты",
                 },

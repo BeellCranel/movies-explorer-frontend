@@ -35,6 +35,7 @@ function Profile() {
     } else {
       setDisabled(false);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValues]);
 
   const inputNameClassName = `profile-form__input${
@@ -92,6 +93,7 @@ function Profile() {
                 required: "Поле обязательно к заполнению",
                 pattern: {
                   value:
+                    // eslint-disable-next-line no-useless-escape
                     /^((([0-9A-Za-z]{1}[-0-9A-z\.]{0,30}[0-9A-Za-z]?)|([0-9А-Яа-я]{1}[-0-9А-я\.]{0,30}[0-9А-Яа-я]?))@([-A-Za-z]{1,}\.){1,}[-A-Za-z]{2,})$/i,
                   message: "Введите корректный адрес электронной почты",
                 },
