@@ -12,7 +12,6 @@ function Login({ handlerSubmit }) {
   } = useForm({ mode: "onChange" });
 
   function onSubmit(data) {
-    alert(JSON.stringify(data));
     handlerSubmit(data.email, data.password);
     reset();
   }

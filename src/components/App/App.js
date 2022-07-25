@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import "./App.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Main from "../Main/Main";
@@ -18,8 +18,8 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [isNavPopupOpen, setIsNavPopupOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({
-    name: "Roma",
-    email: "test@test.ru",
+    name: "",
+    email: "",
   });
   const navigate = useNavigate();
 
@@ -28,6 +28,27 @@ function App() {
   }
   function closeAllPopups() {
     setIsNavPopupOpen(false);
+  }
+
+  function getToken() {
+    return localStorage.getItem("jwt");
+  }
+
+  useEffect(() => {
+    tokenCheck();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function tokenCheck() {
+    if (getToken()) {
+      MainApi.getUserInfo(getToken()).then((res) => {
+        setCurrentUser({
+          name: res.name,
+          email: res.email,
+        });
+        setIsLogged(true);
+      });
+    }
   }
 
   function handleRegister(name, email, password) {
@@ -45,7 +66,7 @@ function App() {
     MainApi.login(email, password)
       .then((res) => {
         localStorage.setItem("jwt", res.token);
-        setIsLogged(true);
+        tokenCheck();
         navigate("/");
       })
       .catch((err) => {
@@ -56,6 +77,19 @@ function App() {
   function handleLoguot() {
     localStorage.removeItem("jwt");
     setIsLogged(false);
+  }
+
+  function handleEditProfile(name, email) {
+    MainApi.editProfile(name, email, getToken())
+      .then((res) => {
+        setCurrentUser({
+          name: res.name,
+          email: res.email,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -71,7 +105,12 @@ function App() {
             <Route path="saved-movies" element={<SavedMovies />} />
             <Route
               path="profile"
-              element={<Profile handlerLogout={handleLoguot} />}
+              element={
+                <Profile
+                  handlerSubmit={handleEditProfile}
+                  handlerLogout={handleLoguot}
+                />
+              }
             />
           </Route>
           <Route

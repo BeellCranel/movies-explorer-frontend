@@ -12,7 +12,6 @@ function Register({ handlerSubmit }) {
   } = useForm({ mode: "onChange" });
 
   function onSubmit(data) {
-    alert(JSON.stringify(data));
     handlerSubmit(data.name, data.email, data.password);
     reset();
   }

@@ -1,42 +1,41 @@
 import "./Profile.scss";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile({ handlerLogout }) {
-  const [userData, setUserData] = useState({
-    name: "Roman",
-    email: "test@test.ru",
-  });
+function Profile({ handlerLogout, handlerSubmit }) {
+  const currentUser = useContext(CurrentUserContext);
+  const { name, email } = currentUser;
   const {
     register,
     formState: { errors, isValid, isDirty },
     handleSubmit,
     reset,
     watch,
-  } = useForm();
-  const [disabled, setDisabled] = useState(false);
+    setValue,
+  } = useForm({ mode: "onChange" });
   const inputValues = watch();
 
   function onSubmit(data) {
-    setUserData({
-      name: data.name,
-      email: data.email,
-    });
+    handlerSubmit(data.name, data.email);
     reset();
   }
 
   useEffect(() => {
-    if (
-      userData.name === inputValues.name &&
-      userData.email === inputValues.email
-    ) {
-      setDisabled(true);
-    } else {
-      setDisabled(false);
+    if (name.length !== 0 && email.length !== 0) {
+      setValue("name", name, {
+        shouldValidate: false,
+        shouldDirty: false,
+        shouldTouch: false,
+      });
+      setValue("email", email, {
+        shouldValidate: false,
+        shouldDirty: false,
+        shouldTouch: false,
+      });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValues]);
+  }, [currentUser]);
 
   const inputNameClassName = `profile-form__input${
     errors.name && isDirty ? " profile-form__input_error" : ""
@@ -47,7 +46,11 @@ function Profile({ handlerLogout }) {
   }`;
 
   const submitBtnClassName = `profile-form__submit ${
-    !isValid || disabled ? "profile-form__submit_disabled" : "opacity"
+    !isValid ||
+    (currentUser.name === inputValues.name &&
+      currentUser.email === inputValues.email)
+      ? "profile-form__submit_disabled"
+      : "opacity"
   }`;
 
   return (
@@ -64,7 +67,6 @@ function Profile({ handlerLogout }) {
             <input
               className={inputNameClassName}
               type="text"
-              defaultValue={userData.name}
               placeholder="Здесь должно быть ваше имя"
               {...register("name", {
                 required: "Поле обязательно к заполнению",
@@ -87,7 +89,6 @@ function Profile({ handlerLogout }) {
             <input
               className={inputEmailClassName}
               type="email"
-              defaultValue={userData.email}
               placeholder="Здесь должен быть ваш email"
               {...register("email", {
                 required: "Поле обязательно к заполнению",
@@ -111,7 +112,11 @@ function Profile({ handlerLogout }) {
             type="submit"
             name="submit"
             value="Редактировать"
-            disabled={!isValid || disabled}
+            disabled={
+              !isValid ||
+              (currentUser.name === inputValues.name &&
+                currentUser.email === inputValues.email)
+            }
           />
           <Link
             className="profile-form__link opacity"
