@@ -53,6 +53,11 @@ function App() {
       });
   }
 
+  function handleLoguot() {
+    localStorage.removeItem("jwt");
+    setIsLogged(false);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
@@ -64,7 +69,10 @@ function App() {
             <Route index element={<Main />} />
             <Route path="movies" element={<Movies />} />
             <Route path="saved-movies" element={<SavedMovies />} />
-            <Route path="profile" element={<Profile />} />
+            <Route
+              path="profile"
+              element={<Profile handlerLogout={handleLoguot} />}
+            />
           </Route>
           <Route
             path="/sign-up"

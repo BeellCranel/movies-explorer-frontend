@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-function Profile() {
+function Profile({ handlerLogout }) {
   const [userData, setUserData] = useState({
     name: "Roman",
     email: "test@test.ru",
@@ -35,7 +35,7 @@ function Profile() {
     } else {
       setDisabled(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValues]);
 
   const inputNameClassName = `profile-form__input${
@@ -113,7 +113,11 @@ function Profile() {
             value="Редактировать"
             disabled={!isValid || disabled}
           />
-          <Link className="profile-form__link opacity" to="/sign-in">
+          <Link
+            className="profile-form__link opacity"
+            to="/sign-in"
+            onClick={handlerLogout}
+          >
             Выйти из аккаунта
           </Link>
         </div>
