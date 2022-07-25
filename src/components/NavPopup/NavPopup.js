@@ -16,17 +16,29 @@ function NavPopup({ isOpen, onClose }) {
         <nav className="nav-popup__menu">
           <ul className="nav-popup__list">
             <li className="nav-popup__item">
-              <Link className="nav-popup__link opacity" to="/">
+              <Link
+                className="nav-popup__link opacity"
+                to="/"
+                onClick={onClose}
+              >
                 Главная
               </Link>
             </li>
             <li className="nav-popup__item">
-              <Link className="nav-popup__link opacity" to="/movies">
+              <Link
+                className="nav-popup__link opacity"
+                to="/movies"
+                onClick={onClose}
+              >
                 Фильмы
               </Link>
             </li>
             <li className="nav-popup__item">
-              <Link className="nav-popup__link opacity" to="/saved-movies">
+              <Link
+                className="nav-popup__link opacity"
+                to="/saved-movies"
+                onClick={onClose}
+              >
                 Сохранённые фильмы
               </Link>
             </li>
@@ -34,7 +46,8 @@ function NavPopup({ isOpen, onClose }) {
         </nav>
         <Link
           className="nav-popup__link nav-popup__link_profile opacity"
-          to="/saved-movies"
+          to="/profile"
+          onClick={onClose}
         >
           <div className="acc-icon" />
           Аккаунт
