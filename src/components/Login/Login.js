@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
-function Login() {
+function Login({ handlerSubmit }) {
   const {
     register,
     formState: { errors, isValid, isDirty },
@@ -13,6 +13,7 @@ function Login() {
 
   function onSubmit(data) {
     alert(JSON.stringify(data));
+    handlerSubmit(data.email, data.password);
     reset();
   }
 

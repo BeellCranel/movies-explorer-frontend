@@ -41,18 +41,39 @@ function App() {
       });
   }
 
+  function handleLogin(email, password) {
+    MainApi.login(email, password)
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setIsLogged(true);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
         <Routes>
-          <Route path="/" element={<Layout onOpen={handleNavPopupOpen} />}>
+          <Route
+            path="/"
+            element={<Layout onOpen={handleNavPopupOpen} isLogged={isLogged} />}
+          >
             <Route index element={<Main />} />
             <Route path="movies" element={<Movies />} />
             <Route path="saved-movies" element={<SavedMovies />} />
             <Route path="profile" element={<Profile />} />
           </Route>
-          <Route path="/sign-up" element={<Register handlerSubmit={handleRegister} />} />
-          <Route path="/sign-in" element={<Login />} />
+          <Route
+            path="/sign-up"
+            element={<Register handlerSubmit={handleRegister} />}
+          />
+          <Route
+            path="/sign-in"
+            element={<Login handlerSubmit={handleLogin} />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <NavPopup isOpen={isNavPopupOpen} onClose={closeAllPopups} />
