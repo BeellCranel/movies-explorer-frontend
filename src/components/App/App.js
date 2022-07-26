@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import "./App.scss";
 import React, { useEffect, useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -11,6 +11,7 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 import NavPopup from "../NavPopup/NavPopup";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as MainApi from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -22,6 +23,7 @@ function App() {
     email: "",
   });
   const navigate = useNavigate();
+  const location = useLocation();
 
   function handleNavPopupOpen() {
     setIsNavPopupOpen(true);
@@ -39,15 +41,27 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function tokenCheck() {
+  useEffect(() => {
+    if (isLogged) {
+      const fromPage = location.state?.from.pathname || "/";
+      navigate(fromPage);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLogged]);
+
+  async function tokenCheck() {
     if (getToken()) {
-      MainApi.getUserInfo(getToken()).then((res) => {
-        setCurrentUser({
-          name: res.name,
-          email: res.email,
+      await MainApi.getUserInfo(getToken())
+        .then((res) => {
+          setCurrentUser({
+            name: res.name,
+            email: res.email,
+          });
+          setIsLogged(true);
+        })
+        .catch((err) => {
+          console.log(err);
         });
-        setIsLogged(true);
-      });
     }
   }
 
@@ -55,7 +69,6 @@ function App() {
     MainApi.register(name, email, password)
       .then(() => {
         navigate("/sign-in");
-        console.log("Аккаунт успешно зарегистрирован!");
       })
       .catch((err) => {
         console.log(err.error);
@@ -67,7 +80,6 @@ function App() {
       .then((res) => {
         localStorage.setItem("jwt", res.token);
         tokenCheck();
-        navigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -101,15 +113,31 @@ function App() {
             element={<Layout onOpen={handleNavPopupOpen} isLogged={isLogged} />}
           >
             <Route index element={<Main />} />
-            <Route path="movies" element={<Movies />} />
-            <Route path="saved-movies" element={<SavedMovies />} />
+            <Route
+              path="movies"
+              element={
+                <ProtectedRoute isLogged={isLogged}>
+                  <Movies />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="saved-movies"
+              element={
+                <ProtectedRoute isLogged={isLogged}>
+                  <SavedMovies />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="profile"
               element={
-                <Profile
-                  handlerSubmit={handleEditProfile}
-                  handlerLogout={handleLoguot}
-                />
+                <ProtectedRoute isLogged={isLogged}>
+                  <Profile
+                    handlerSubmit={handleEditProfile}
+                    handlerLogout={handleLoguot}
+                  />
+                </ProtectedRoute>
               }
             />
           </Route>

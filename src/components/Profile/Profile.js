@@ -35,6 +35,7 @@ function Profile({ handlerLogout, handlerSubmit }) {
         shouldTouch: false,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   const inputNameClassName = `profile-form__input${
