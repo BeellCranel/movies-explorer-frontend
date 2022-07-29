@@ -64,3 +64,14 @@ export function editProfile(name, email, token) {
     }),
   }).then(checkResponse);
 }
+
+export function getSavedMovies(token) {
+  return fetch(`${baseUrl}/movies`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}

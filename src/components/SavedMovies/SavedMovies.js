@@ -4,7 +4,7 @@ import Card from "../Card/Card";
 import Footer from "../Footer/Footer";
 import { movies } from "../../utils/constans";
 
-function SavedMovies() {
+function SavedMovies({ isFilterMovies, changeFilter }) {
   const savedMovies = movies
     .filter((card) => card.saved)
     .map((card, i) => {
@@ -22,8 +22,16 @@ function SavedMovies() {
   return (
     <>
       <main className="content">
-        <SearchForm />
-        <section className="cards cards__saved">{savedMovies}</section>
+        <SearchForm
+          isFilterMovies={isFilterMovies}
+          changeFilter={changeFilter}
+        />
+        <section className="cards">{savedMovies}</section>
+        <div className="more-btn">
+          <button className="more-btn__btn_hidden" type="button">
+            Ещё
+          </button>
+        </div>
       </main>
       <Footer />
     </>

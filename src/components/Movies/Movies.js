@@ -1,38 +1,102 @@
 import "./Movies.scss";
+import React, { useState, useEffect } from "react";
 import SearchForm from "../SearchForm/SearchForm";
+import Preloader from "../../vendor/Preloader/Preloader";
 import Card from "../Card/Card";
 import Footer from "../Footer/Footer";
-import { movies } from "../../utils/constans";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-function Movies() {
-  const cardEl = movies.map((card, i) => {
-    const elBtnClassName = `save-btn ${
-      card.saved ? "save-btn__saved" : "opacity"
-    }`;
+function Movies({
+  isFilterMovies,
+  isLoading,
+  changeFilter,
+  searchSubmit,
+  movies,
+  savedMovies,
+  errorMessage,
+  searchMessage,
+}) {
+  const [numberMoviesView, setNumberView] = useState();
+  const [addMoviesView, setAddMoviesView] = useState();
 
+  function onChangeScreenWidth() {
+    const windowWidth = window.innerWidth;
+    if (windowWidth > 1279) {
+      setNumberView(15);
+      setAddMoviesView(3);
+    } else if (windowWidth >= 806) {
+      setNumberView(12);
+      setAddMoviesView(2);
+    } else if (windowWidth >= 624) {
+      setNumberView(8);
+      setAddMoviesView(2);
+    } else {
+      setNumberView(5);
+      setAddMoviesView(2);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", onChangeScreenWidth);
+  }, []);
+
+  useEffect(() => {
+    if (isLoading) {
+      onChangeScreenWidth();
+    }
+  }, [isLoading]);
+
+  function addMoviesInCollectionVisible() {
+    setNumberView((prevState) => prevState + addMoviesView);
+  }
+
+  const visibleMovies = movies.slice(0, numberMoviesView);
+  const cardEl = visibleMovies.map((card, i) => {
     return (
       <Card
-        link={card.link}
-        name={card.name}
+        id={card.id}
+        image={`https://api.nomoreparties.co${card.image.url}`}
+        trailer={card.trailerLink}
+        name={card.nameRU}
         duration={card.duration}
-        btnClassName={elBtnClassName}
-        key={i}
+        savedMovies={savedMovies}
+        key={card.id}
       />
     );
   });
+  const visibleContent = isLoading ? (
+    <Preloader />
+  ) : errorMessage.state ? (
+    <ErrorMessage error={errorMessage} />
+  ) : searchMessage.state ? (
+    <ErrorMessage error={searchMessage} />
+  ) : (
+    cardEl
+  );
+
+  const moreBtnClassName = `more-btn__btn${
+    visibleMovies.length < movies.length ? " opacity" : " more-btn__btn_hidden"
+  }`;
 
   return (
     <>
       <main className="content">
-        <SearchForm />
-        <section className="cards">
-          {cardEl}
-          <div className="more-btn">
-            <button className="more-btn__btn opacity" type="button">
-              Ещё
-            </button>
-          </div>
-        </section>
+        <SearchForm
+          isFilterMovies={isFilterMovies}
+          changeFilter={changeFilter}
+          searchSubmit={searchSubmit}
+        />
+        <section className="cards">{visibleContent}</section>
+        <div className="more-btn">
+          <button
+            className={moreBtnClassName}
+            type="button"
+            onClick={addMoviesInCollectionVisible}
+            disabled={visibleMovies.length >= movies.length}
+          >
+            Ещё
+          </button>
+        </div>
       </main>
       <Footer />
     </>

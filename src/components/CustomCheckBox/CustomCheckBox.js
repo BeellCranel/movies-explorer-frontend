@@ -1,14 +1,23 @@
 import "./CustomCheckBox.scss";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
-function CustomCheckBox() {
+function CustomCheckBox({ isFilterMovies, changeFilter }) {
+  const { register, setValue } = useForm({ mode: "onChange" });
+
+  useEffect(() => {
+    setValue("checkbox", isFilterMovies);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFilterMovies]);
+
   return (
     <label className="check">
       <input
         className="check__input"
         type="checkbox"
-        id="short-films"
         name="short-films"
-        defaultChecked
+        onClick={changeFilter}
+        {...register("checkbox")}
       />
       <span className="check__box opacity">
         <span className="check__box_item" />

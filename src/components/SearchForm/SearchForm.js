@@ -2,7 +2,7 @@ import "./SearchForm.scss";
 import { useForm } from "react-hook-form";
 import CustomCheckBox from "../CustomCheckBox/CustomCheckBox";
 
-function SearchForm() {
+function SearchForm({ isFilterMovies, changeFilter, searchSubmit }) {
   const {
     register,
     formState: { errors },
@@ -10,7 +10,7 @@ function SearchForm() {
   } = useForm();
 
   function onSubmit(data) {
-    console.log(data);
+    searchSubmit(data.movie);
   }
   return (
     <section className="search-form">
@@ -33,7 +33,10 @@ function SearchForm() {
           />
         </fieldset>
         <span className="search-form__error">{errors?.movie?.message}</span>
-        <CustomCheckBox />
+        <CustomCheckBox
+          isFilterMovies={isFilterMovies}
+          changeFilter={changeFilter}
+        />
       </form>
     </section>
   );
