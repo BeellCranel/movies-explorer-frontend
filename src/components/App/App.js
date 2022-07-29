@@ -11,6 +11,7 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 import NavPopup from "../NavPopup/NavPopup";
+import ErrorPopup from "../ErrorPopup/ErrorPopup";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as MainApi from "../../utils/MainApi";
 import * as MoviesApi from "../../utils/MoviesApi";
@@ -22,6 +23,7 @@ function App() {
   const [isFilterMovies, setIsFilterMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isNavPopupOpen, setIsNavPopupOpen] = useState(false);
+  const [isErrPopupOpen, setIsErrPopupOpen] = useState(false);
   // массивы карточек фильмов
   const [moviesCollection, setMoviesCollection] = useState([]);
   const [savedMoviesCollection, setSavedMoviesCollection] = useState([]);
@@ -36,6 +38,7 @@ function App() {
   // состояния  ошибок, сообщения результатов поиска фильмов
   const [errorMessage, setErrorMessage] = useState({
     state: false,
+    status: "",
     message: "",
   });
   const [searchMovieMessage, setSearchMovieMessage] = useState({
@@ -65,11 +68,13 @@ function App() {
 
   function closeAllPopups() {
     setIsNavPopupOpen(false);
+    setIsErrPopupOpen(false);
   }
 
   function resetErrors() {
     setErrorMessage({
       state: false,
+      status: "",
       message: "",
     });
 
@@ -115,7 +120,12 @@ function App() {
           });
         })
         .catch((err) => {
-          console.log(err);
+          setErrorMessage({
+            state: true,
+            status: err.status,
+            message: err.message,
+          });
+          setIsErrPopupOpen(true);
         });
 
       if (movies) {
@@ -128,7 +138,12 @@ function App() {
             localStorage.setItem("movies", JSON.stringify(res));
           })
           .catch((err) => {
-            console.log(err);
+            setErrorMessage({
+              state: true,
+              status: err.status,
+              message: err.message,
+            });
+            setIsErrPopupOpen(true);
           });
       }
 
@@ -142,7 +157,12 @@ function App() {
             localStorage.setItem("savedMovies", JSON.stringify(res));
           })
           .catch((err) => {
-            console.log(err);
+            setErrorMessage({
+              state: true,
+              status: err.status,
+              message: err.message,
+            });
+            setIsErrPopupOpen(true);
           });
       }
 
@@ -216,7 +236,12 @@ function App() {
         navigate("/sign-in");
       })
       .catch((err) => {
-        console.log(err.error);
+        setErrorMessage({
+          state: true,
+          status: err.status,
+          message: err.message,
+        });
+        setIsErrPopupOpen(true);
       });
   }
 
@@ -227,7 +252,12 @@ function App() {
         tokenCheck();
       })
       .catch((err) => {
-        console.log(err);
+        setErrorMessage({
+          state: true,
+          status: err.status,
+          message: err.message,
+        });
+        setIsErrPopupOpen(true);
       });
   }
 
@@ -242,10 +272,7 @@ function App() {
     setFilterSavedMoviesCollection([]);
     setTimeFilterMovieCollection([]);
     setTimeFilterSavedMovieCollection([]);
-    setErrorMessage({
-      state: false,
-      message: "",
-    });
+    resetErrors();
   }
 
   function handleEditProfile(name, email) {
@@ -257,7 +284,12 @@ function App() {
         });
       })
       .catch((err) => {
-        console.log(err);
+        setErrorMessage({
+          state: true,
+          status: err.status,
+          message: err.message,
+        });
+        setIsErrPopupOpen(true);
       });
   }
 
@@ -329,6 +361,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <NavPopup isOpen={isNavPopupOpen} onClose={closeAllPopups} />
+        <ErrorPopup isOpen={isErrPopupOpen} onClose={closeAllPopups} errorMesage={errorMessage} />
       </div>
     </CurrentUserContext.Provider>
   );
