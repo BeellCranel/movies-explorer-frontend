@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
-function Register({ handlerSubmit }) {
+function Register({ handlerSubmit, errorMessage, resetErrors }) {
   const {
     register,
     formState: { errors, isValid, isDirty },
@@ -34,7 +34,7 @@ function Register({ handlerSubmit }) {
 
   return (
     <section className="register">
-      <Logo />
+      <Logo resetErrors={resetErrors} />
       <form className="form" name="register" onSubmit={handleSubmit(onSubmit)}>
         <h1 className="form__title">Добро пожаловать!</h1>
         <fieldset className="form__feildset">
@@ -94,6 +94,7 @@ function Register({ handlerSubmit }) {
             <span className="form__error">{errors?.password?.message}</span>
           </label>
         </fieldset>
+        <span className="form__api-error">{errorMessage?.message}</span>
         <input
           className={submitBtnClassName}
           type="submit"
@@ -103,7 +104,7 @@ function Register({ handlerSubmit }) {
         />
         <div className="form__link">
           <p className="form__link_label">Уже зарегистрированы?</p>
-          <Link className="form__link_link opacity" to="/sign-in">
+          <Link className="form__link_link opacity" to="/sign-in" onClick={resetErrors}>
             Войти
           </Link>
         </div>

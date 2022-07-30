@@ -1,13 +1,24 @@
 import "./SearchForm.scss";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import CustomCheckBox from "../CustomCheckBox/CustomCheckBox";
 
-function SearchForm({ isFilterMovies, changeFilter, searchSubmit }) {
+function SearchForm({
+  isFilterMovies,
+  changeFilter,
+  searchSubmit,
+  searchWord,
+}) {
   const {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm();
+
+  useEffect(() => {
+    setValue("movie", searchWord.word);
+  }, [searchWord]);
 
   function onSubmit(data) {
     searchSubmit(data.movie);

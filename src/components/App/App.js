@@ -49,6 +49,12 @@ function App() {
     state: false,
     message: "",
   });
+  const [searchWord, setSearchWord] = useState({
+    word: "",
+  });
+  const [searchWordSaved, setSearchWordSaved] = useState({
+    word: "",
+  });
   // данные пользователя
   const [currentUser, setCurrentUser] = useState({
     name: "",
@@ -100,7 +106,7 @@ function App() {
 
   useEffect(() => {
     if (isLogged) {
-      const fromPage = location.state?.from.pathname || "/";
+      const fromPage = location.state?.from.pathname || "/movies";
       navigate(fromPage);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -171,6 +177,9 @@ function App() {
   }
 
   function searchMovies(searchText) {
+    setSearchWord({
+      word: searchText,
+    });
     resetErrors();
     setIsLoading(true);
     if (moviesCollection.length === 0) {
@@ -233,7 +242,8 @@ function App() {
   function handleRegister(name, email, password) {
     MainApi.register(name, email, password)
       .then(() => {
-        navigate("/sign-in");
+        resetErrors();
+        handleLogin(email, password);
       })
       .catch((err) => {
         setErrorMessage({
@@ -241,13 +251,13 @@ function App() {
           status: err.status,
           message: err.message,
         });
-        setIsErrPopupOpen(true);
       });
   }
 
   function handleLogin(email, password) {
     MainApi.login(email, password)
       .then((res) => {
+        resetErrors();
         localStorage.setItem("jwt", res.token);
         tokenCheck();
       })
@@ -257,7 +267,6 @@ function App() {
           status: err.status,
           message: err.message,
         });
-        setIsErrPopupOpen(true);
       });
   }
 
@@ -293,6 +302,14 @@ function App() {
       });
   }
 
+  function handleSaveMove() {
+
+  }
+
+  function handleDeleteMove() {
+
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
@@ -323,6 +340,7 @@ function App() {
                         ? searchShortMovieMessage
                         : searchMovieMessage
                     }
+                    searchWord={searchWord}
                   />
                 </ProtectedRoute>
               }
@@ -352,16 +370,32 @@ function App() {
           </Route>
           <Route
             path="/sign-up"
-            element={<Register handlerSubmit={handleRegister} />}
+            element={
+              <Register
+                handlerSubmit={handleRegister}
+                errorMessage={errorMessage}
+                resetErrors={resetErrors}
+              />
+            }
           />
           <Route
             path="/sign-in"
-            element={<Login handlerSubmit={handleLogin} />}
+            element={
+              <Login
+                handlerSubmit={handleLogin}
+                errorMessage={errorMessage}
+                resetErrors={resetErrors}
+              />
+            }
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <NavPopup isOpen={isNavPopupOpen} onClose={closeAllPopups} />
-        <ErrorPopup isOpen={isErrPopupOpen} onClose={closeAllPopups} errorMesage={errorMessage} />
+        <ErrorPopup
+          isOpen={isErrPopupOpen}
+          onClose={closeAllPopups}
+          errorMesage={errorMessage}
+        />
       </div>
     </CurrentUserContext.Provider>
   );

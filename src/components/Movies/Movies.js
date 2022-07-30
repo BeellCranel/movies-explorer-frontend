@@ -15,6 +15,7 @@ function Movies({
   savedMovies,
   errorMessage,
   searchMessage,
+  searchWord,
 }) {
   const [numberMoviesView, setNumberView] = useState();
   const [addMoviesView, setAddMoviesView] = useState();
@@ -85,6 +86,7 @@ function Movies({
           isFilterMovies={isFilterMovies}
           changeFilter={changeFilter}
           searchSubmit={searchSubmit}
+          searchWord={searchWord}
         />
         <section className="cards">{visibleContent}</section>
         <div className="more-btn">

@@ -121,7 +121,7 @@ function Profile({ handlerLogout, handlerSubmit }) {
           />
           <Link
             className="profile-form__link opacity"
-            to="/sign-in"
+            to="/"
             onClick={handlerLogout}
           >
             Выйти из аккаунта
