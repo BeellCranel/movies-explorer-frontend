@@ -26,6 +26,7 @@
   }
 
   &__fieldset {
+    position: relative;
     box-sizing: border-box;
     width: 100%;
     display: flex;
@@ -73,6 +74,32 @@
       &:hover {
         cursor: pointer;
       }
+    }
+  }
+
+  &__del-btn {
+    position: absolute;
+    top: 7px;
+    right: 87px;
+    width: 30px;
+    height: 30px;
+    background-image: url("../../images/exit-nav-icon.svg");
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+
+    @media screen and (min-width: 624px) {
+      top: 9px;
+      right: 89px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &_hidden {
+      display: none;
     }
   }
 

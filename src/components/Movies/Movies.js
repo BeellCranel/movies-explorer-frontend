@@ -16,9 +16,48 @@ function Movies({
   errorMessage,
   searchMessage,
   searchWord,
+  resetSearchResult,
+  onSave,
+  onDel,
 }) {
   const [numberMoviesView, setNumberView] = useState();
   const [addMoviesView, setAddMoviesView] = useState();
+
+  const visibleMovies = movies.slice(0, numberMoviesView);
+  const cardEl = visibleMovies.map((movie) => {
+    return (
+      <Card
+        isMovies={true}
+        movie={movie}
+        savedMovies={savedMovies}
+        key={movie.id}
+        onSave={onSave}
+        onDel={onDel}
+      />
+    );
+  });
+  const visibleContent = isLoading ? (
+    <Preloader />
+  ) : errorMessage.state ? (
+    <ErrorMessage error={errorMessage} />
+  ) : searchMessage.state ? (
+    <ErrorMessage error={searchMessage} />
+  ) : (
+    cardEl
+  );
+  const moreBtnClassName = `more-btn__btn${
+    visibleMovies.length < movies.length ? " opacity" : " more-btn__btn_hidden"
+  }`;
+
+  useEffect(() => {
+    window.addEventListener("resize", onChangeScreenWidth);
+  }, []);
+
+  useEffect(() => {
+    if (isLoading) {
+      onChangeScreenWidth();
+    }
+  }, [isLoading]);
 
   function onChangeScreenWidth() {
     const windowWidth = window.innerWidth;
@@ -37,47 +76,9 @@ function Movies({
     }
   }
 
-  useEffect(() => {
-    window.addEventListener("resize", onChangeScreenWidth);
-  }, []);
-
-  useEffect(() => {
-    if (isLoading) {
-      onChangeScreenWidth();
-    }
-  }, [isLoading]);
-
   function addMoviesInCollectionVisible() {
     setNumberView((prevState) => prevState + addMoviesView);
   }
-
-  const visibleMovies = movies.slice(0, numberMoviesView);
-  const cardEl = visibleMovies.map((card, i) => {
-    return (
-      <Card
-        id={card.id}
-        image={`https://api.nomoreparties.co${card.image.url}`}
-        trailer={card.trailerLink}
-        name={card.nameRU}
-        duration={card.duration}
-        savedMovies={savedMovies}
-        key={card.id}
-      />
-    );
-  });
-  const visibleContent = isLoading ? (
-    <Preloader />
-  ) : errorMessage.state ? (
-    <ErrorMessage error={errorMessage} />
-  ) : searchMessage.state ? (
-    <ErrorMessage error={searchMessage} />
-  ) : (
-    cardEl
-  );
-
-  const moreBtnClassName = `more-btn__btn${
-    visibleMovies.length < movies.length ? " opacity" : " more-btn__btn_hidden"
-  }`;
 
   return (
     <>
@@ -87,6 +88,8 @@ function Movies({
           changeFilter={changeFilter}
           searchSubmit={searchSubmit}
           searchWord={searchWord}
+          resetSearchResult={resetSearchResult}
+          isMovies={true}
         />
         <section className="cards">{visibleContent}</section>
         <div className="more-btn">

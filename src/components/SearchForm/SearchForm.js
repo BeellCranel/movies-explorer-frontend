@@ -8,20 +8,32 @@ function SearchForm({
   changeFilter,
   searchSubmit,
   searchWord,
+  resetSearchResult,
+  isMovies,
 }) {
   const {
     register,
     formState: { errors },
     handleSubmit,
     setValue,
+    watch,
   } = useForm();
+  const inputValues = watch();
+  const delBtnClassName = `search-form__del-btn${
+    inputValues.movie ? " opacity" : "_hidden"
+  }`;
 
   useEffect(() => {
     setValue("movie", searchWord.word);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchWord]);
 
   function onSubmit(data) {
     searchSubmit(data.movie);
+  }
+
+  function clearInput() {
+    resetSearchResult(isMovies);
   }
   return (
     <section className="search-form">
@@ -41,6 +53,11 @@ function SearchForm({
             className="search-form__el search-form__el_submit opacity"
             type="submit"
             value="Найти"
+          />
+          <button
+            className={delBtnClassName}
+            type="button"
+            onClick={clearInput}
           />
         </fieldset>
         <span className="search-form__error">{errors?.movie?.message}</span>

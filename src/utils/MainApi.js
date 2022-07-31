@@ -75,3 +75,37 @@ export function getSavedMovies(token) {
     },
   }).then(checkResponse);
 }
+export function saveMovie(token, card) {
+  return fetch(`${baseUrl}/movies`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      country: card.country,
+      director: card.director,
+      duration: card.duration,
+      year: card.year,
+      description: card.description,
+      image: card.image,
+      trailerLink: card.trailerLink,
+      nameRU: card.nameRU,
+      nameEN: card.nameEN,
+      thumbnail: card.thumbnail,
+      movieId: card.movieId,
+    }),
+  }).then(checkResponse);
+}
+
+export function deleteMovie(token, id) {
+  return fetch(`${baseUrl}/movies/${id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
