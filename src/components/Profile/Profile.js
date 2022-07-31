@@ -79,6 +79,12 @@ function Profile({ handlerLogout, handlerSubmit }) {
                   value: 30,
                   message: "Максимум 30 символов",
                 },
+                pattern: {
+                  // eslint-disable-next-line no-useless-escape
+                  value: /^[a-zа-я\s-]{1,}$/gi,
+                  message:
+                    "Имя содержит только латинские символы, кирилицу, пробел или дефис",
+                },
               })}
             />
             <span className="profile-form__error profile-form__error_name">

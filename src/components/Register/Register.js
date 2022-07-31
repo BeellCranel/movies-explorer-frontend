@@ -53,6 +53,12 @@ function Register({ handlerSubmit, errorMessage, resetErrors }) {
                   value: 30,
                   message: "Максимум 30 символов",
                 },
+                pattern: {
+                  // eslint-disable-next-line no-useless-escape
+                  value: /^[a-zа-я\s-]{1,}$/ig,
+                  message:
+                    "Имя содержит только латинские символы, кирилицу, пробел или дефис",
+                },
               })}
             />
             <span className="form__error">{errors?.name?.message}</span>
@@ -104,7 +110,11 @@ function Register({ handlerSubmit, errorMessage, resetErrors }) {
         />
         <div className="form__link">
           <p className="form__link_label">Уже зарегистрированы?</p>
-          <Link className="form__link_link opacity" to="/sign-in" onClick={resetErrors}>
+          <Link
+            className="form__link_link opacity"
+            to="/sign-in"
+            onClick={resetErrors}
+          >
             Войти
           </Link>
         </div>
