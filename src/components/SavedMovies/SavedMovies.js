@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 function SavedMovies({
-  isFilterMovies,
+  filterState,
   isLoading,
   changeFilter,
   movies,
@@ -81,7 +81,7 @@ function SavedMovies({
     <>
       <main className="content">
         <SearchForm
-          isFilterMovies={isFilterMovies}
+          filterState={filterState}
           changeFilter={changeFilter}
           searchSubmit={searchSubmit}
           searchWord={searchWord}

@@ -2,13 +2,19 @@ import "./CustomCheckBox.scss";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-function CustomCheckBox({ isFilterMovies, changeFilter }) {
+function CustomCheckBox({ filterState, changeFilter, isMovies }) {
   const { register, setValue } = useForm({ mode: "onChange" });
 
+
+
+  function changeFilterP() {
+    changeFilter(isMovies);
+  }
+
   useEffect(() => {
-    setValue("checkbox", isFilterMovies);
+    setValue("checkbox", filterState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFilterMovies]);
+  }, [filterState]);
 
   return (
     <label className="check">
@@ -16,7 +22,7 @@ function CustomCheckBox({ isFilterMovies, changeFilter }) {
         className="check__input"
         type="checkbox"
         name="short-films"
-        onClick={changeFilter}
+        onClick={changeFilterP}
         {...register("checkbox")}
       />
       <span className="check__box opacity">

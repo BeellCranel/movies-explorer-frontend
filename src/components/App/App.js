@@ -19,9 +19,9 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
   // состояния чекбоксов, попапов, прелоадорол и т.д.
-  const [isLogged, setIsLogged] = useState(false);
   const [isFilterMovies, setIsFilterMovies] = useState(false);
-  const [isFilterSavedMovies, setIsFilterSavedMovies] = useState(false);
+  const [isFilterMoviesSave, setIsFilterMoviesSave] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isNavPopupOpen, setIsNavPopupOpen] = useState(false);
   const [isErrPopupOpen, setIsErrPopupOpen] = useState(false);
@@ -31,10 +31,10 @@ function App() {
   const [filterMoviesCollection, setFilterMoviesCollection] = useState([]);
   const [filterSavedMoviesCollection, setFilterSavedMoviesCollection] =
     useState([]);
-  const [timeFilterMovieCollection, setTimeFilterMovieCollection] = useState(
+  const [timeFilterMoviesCollection, setTimeFilterMoviesCollection] = useState(
     []
   );
-  const [timeFilterSavedMovieCollection, setTimeFilterSavedMovieCollection] =
+  const [timeFilterSavedMoviesCollection, setTimeFilterSavedMoviesCollection] =
     useState([]);
   // состояния  ошибок, сообщения результатов поиска фильмов
   const [errorMessage, setErrorMessage] = useState({
@@ -42,27 +42,31 @@ function App() {
     status: "",
     message: "",
   });
-  const [errorMovieMessage, setErrorMovieMessage] = useState({
+  const [successEdit, setSuccessEdit] = useState({
     state: false,
     message: "",
   });
-  const [errorSavedMovieMessage, setErrorSavedMovieMessage] = useState({
+  const [errorMoviesMessage, setErrorMoviesMessage] = useState({
     state: false,
     message: "",
   });
-  const [searchMovieMessage, setSearchMovieMessage] = useState({
+  const [errorSavedMoviesMessage, setErrorSavedMoviesMessage] = useState({
     state: false,
     message: "",
   });
-  const [searchShortMovieMessage, setSearchShortMovieMessage] = useState({
+  const [searchMoviesMessage, setSearchMoviesMessage] = useState({
     state: false,
     message: "",
   });
-  const [searchSavedMovieMessage, setSearchSavedMovieMessage] = useState({
+  const [searchShortMoviesMessage, setSearchShortMoviesMessage] = useState({
     state: false,
     message: "",
   });
-  const [searchShortSavedMovieMessage, setSearchShortSavedMovieMessage] =
+  const [searchSavedMoviesMessage, setSearchSavedMoviesMessage] = useState({
+    state: false,
+    message: "",
+  });
+  const [searchShortSavedMoviesMessage, setSearchShortSavedMoviesMessage] =
     useState({
       state: false,
       message: "",
@@ -71,7 +75,7 @@ function App() {
     state: false,
     word: "",
   });
-  const [searchWordSaved, setSearchWordSaved] = useState({
+  const [searchWordSave, setSearchWordSave] = useState({
     state: false,
     word: "",
   });
@@ -84,8 +88,14 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  function changeFilter() {
-    setIsFilterMovies(!isFilterMovies);
+  function changeFilter(isMovies) {
+    if (isMovies) {
+      localStorage.setItem("checkboxM", !isFilterMovies);
+      setIsFilterMovies(!isFilterMovies);
+    } else {
+      localStorage.setItem("checkboxS", !isFilterMoviesSave);
+      setIsFilterMoviesSave(!isFilterMoviesSave);
+    }
   }
 
   function handleNavPopupOpen() {
@@ -104,39 +114,46 @@ function App() {
       message: "",
     });
 
-    setErrorMovieMessage({
+    setSuccessEdit({
       state: false,
       message: "",
     });
 
-    setErrorSavedMovieMessage({
+    setErrorMoviesMessage({
       state: false,
       message: "",
     });
 
-    setSearchMovieMessage({
+    setErrorSavedMoviesMessage({
       state: false,
       message: "",
     });
 
-    setSearchShortMovieMessage({
+    setSearchMoviesMessage({
       state: false,
       message: "",
     });
 
-    setSearchSavedMovieMessage({
+    setSearchShortMoviesMessage({
       state: false,
       message: "",
     });
 
-    setSearchShortSavedMovieMessage({
+    setSearchSavedMoviesMessage({
       state: false,
       message: "",
     });
-  }
 
-  function getToken() {
-    return localStorage.getItem("jwt");
+    setSearchShortSavedMoviesMessage({
+      state: false,
+      message: "",
+    });
+
+    localStorage.removeItem("filterMoviesCollectionMessage");
+    localStorage.removeItem("timeFilterMoviesCollectionMessage");
+
+    localStorage.removeItem("filterSavedMoviesCollectionMessage");
+    localStorage.removeItem("timeFilterSavedMoviesCollectionMessage");
   }
 
   useEffect(() => {
@@ -146,6 +163,7 @@ function App() {
 
   useEffect(() => {
     if (isLogged) {
+      getDataFromLocalStor();
       const fromPage = location.state?.from.pathname || "/movies";
       navigate(fromPage);
     }
@@ -153,17 +171,14 @@ function App() {
   }, [isLogged]);
 
   function tokenCheck() {
-    const jwt = getToken();
-    const movies = localStorage.getItem("movies");
-    const savedMovies = localStorage.getItem("savedMovies");
-
-    if (jwt) {
-      MainApi.getUserInfo(jwt)
+    if (getToken()) {
+      MainApi.getUserInfo(getToken())
         .then((res) => {
           setCurrentUser({
             name: res.name,
             email: res.email,
           });
+          setIsLogged(true);
         })
         .catch((err) => {
           setErrorMessage({
@@ -173,67 +188,162 @@ function App() {
           });
           setIsErrPopupOpen(true);
         });
+    }
+  }
 
-      if (movies) {
-        const result = JSON.parse(movies);
-        setMoviesCollection(result);
-      } else {
-        MoviesApi.getInitialMovies()
-          .then((res) => {
-            setMoviesCollection(res);
-            localStorage.setItem("movies", JSON.stringify(res));
-          })
-          .catch((err) => {
-            setErrorMessage({
-              state: true,
-              status: err.status,
-              message: err.message,
-            });
-            setIsErrPopupOpen(true);
+  function getToken() {
+    return localStorage.getItem("jwt");
+  }
+
+  function getDataFromLocalStor() {
+    const movies = JSON.parse(localStorage.getItem("moviesCollection"));
+    const savedMovies = JSON.parse(
+      localStorage.getItem("savedMoviesCollection")
+    );
+    const filterMovies = JSON.parse(
+      localStorage.getItem("filterMoviesCollection")
+    );
+    const filterSavedMovies = JSON.parse(
+      localStorage.getItem("filterSavedMoviesCollection")
+    );
+    const timeFilterMovies = JSON.parse(
+      localStorage.getItem("timeFilterMoviesCollection")
+    );
+    const timeFilterSavedMovies = JSON.parse(
+      localStorage.getItem("timeFilterSavedMoviesCollection")
+    );
+    const searchWordM = JSON.parse(localStorage.getItem("searchWord"));
+    const searchWordS = JSON.parse(localStorage.getItem("searchWordSave"));
+    const searchMoviesMes = JSON.parse(
+      localStorage.getItem("searchMoviesMessage")
+    );
+    const searchShortMoviesMes = JSON.parse(
+      localStorage.getItem("searchShortMoviesMessage")
+    );
+    const searchSavedMoviesMes = JSON.parse(
+      localStorage.getItem("searchSavedMoviesMessage")
+    );
+    const searchShortSavedMoviesMes = JSON.parse(
+      localStorage.getItem("searchShortSavedMoviesMessage")
+    );
+    const checkboxM = JSON.parse(localStorage.getItem("checkboxM"));
+    const checkboxS = JSON.parse(localStorage.getItem("checkboxS"));
+
+    if (movies) {
+      setMoviesCollection(movies);
+    } else {
+      MoviesApi.getInitialMovies()
+        .then((res) => {
+          setMoviesCollection(res);
+          localStorage.setItem("moviesCollection", JSON.stringify(res));
+        })
+        .catch((err) => {
+          setErrorMessage({
+            state: true,
+            status: err.status,
+            message: err.message,
           });
-      }
+          setIsErrPopupOpen(true);
+        });
+    }
 
-      if (savedMovies) {
-        const result = JSON.parse(savedMovies);
-        setSavedMoviesCollection(result);
-        setFilterSavedMoviesCollection(result);
-        setTimeFilterSavedMovieCollection(searchShort(result));
-      } else {
-        MainApi.getSavedMovies(jwt)
-          .then((res) => {
-            setSavedMoviesCollection(res);
-            localStorage.setItem("savedMovies", JSON.stringify(res));
-          })
-          .catch((err) => {
-            setErrorMessage({
-              state: true,
-              status: err.status,
-              message: err.message,
-            });
-            setIsErrPopupOpen(true);
+    if (savedMovies) {
+      setSavedMoviesCollection(savedMovies);
+    } else {
+      MainApi.getSavedMovies(getToken())
+        .then((res) => {
+          setSavedMoviesCollection(res);
+          localStorage.setItem("savedMoviesCollection", JSON.stringify(res));
+          setFilterSavedMoviesCollection(res);
+          localStorage.setItem(
+            "filterSavedMoviesCollection",
+            JSON.stringify(res)
+          );
+          setTimeFilterSavedMoviesCollection(searchShort(res));
+          localStorage.setItem(
+            "timeFilterSavedMoviesCollection",
+            JSON.stringify(searchShort(res))
+          );
+        })
+        .catch((err) => {
+          setErrorMessage({
+            state: true,
+            status: err.status,
+            message: err.message,
           });
-      }
+          setIsErrPopupOpen(true);
+        });
+    }
 
-      setIsLogged(true);
+    if (filterMovies) {
+      setFilterMoviesCollection(filterMovies);
+    }
+
+    if (filterSavedMovies) {
+      setFilterSavedMoviesCollection(filterSavedMovies);
+    }
+
+    if (timeFilterMovies) {
+      setTimeFilterMoviesCollection(timeFilterMovies);
+    }
+
+    if (timeFilterSavedMovies) {
+      setTimeFilterSavedMoviesCollection(timeFilterSavedMovies);
+    }
+
+    if (searchWordM) {
+      setSearchWord(searchWordM);
+    }
+
+    if (searchWordS) {
+      setSearchWordSave(searchWordS);
+    }
+
+    if (searchMoviesMes) {
+      setSearchMoviesMessage(searchMoviesMes);
+    }
+
+    if (searchShortMoviesMes) {
+      setSearchShortMoviesMessage(searchShortMoviesMes);
+    }
+
+    if (searchSavedMoviesMes) {
+      setSearchSavedMoviesMessage(searchSavedMoviesMes);
+    }
+
+    if (searchShortSavedMoviesMes) {
+      setSearchShortSavedMoviesMessage(searchShortSavedMoviesMes);
+    }
+
+    if (checkboxM) {
+      setIsFilterMovies(checkboxM);
+    }
+
+    if (checkboxS) {
+      setIsFilterMoviesSave(checkboxS);
     }
   }
 
   function searchMovies(searchText) {
-    setSearchWord({
+    const searchState = {
       state: true,
       word: searchText,
-    });
+    };
+    localStorage.setItem("searchWord", JSON.stringify(searchState));
+    setSearchWord(searchState);
+
     resetErrors();
     setIsLoading(true);
+
     if (moviesCollection.length === 0) {
       MoviesApi.getInitialMovies()
         .then((res) => {
           setMoviesCollection(res);
-          localStorage.setItem("movies", JSON.stringify(res));
+          localStorage.setItem("moviesCollection", JSON.stringify(res));
         })
         .catch((err) => {
           console.log(err);
-          setErrorMovieMessage({
+          setErrorMoviesMessage({
             state: true,
             message:
               "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз",
@@ -243,20 +353,35 @@ function App() {
 
     const result = search(moviesCollection, searchText);
     setFilterMoviesCollection(result);
+    localStorage.setItem("filterMoviesCollection", JSON.stringify(result));
     if (result.length === 0) {
-      setSearchMovieMessage({
+      const message = {
         state: true,
         message: "Ничего не найдено",
-      });
+      };
+      setSearchMoviesMessage(message);
+      localStorage.setItem(
+        "filterMoviesCollectionMessage",
+        JSON.stringify(message)
+      );
     }
 
     const resultShort = searchShort(result);
-    setTimeFilterMovieCollection(resultShort);
+    setTimeFilterMoviesCollection(resultShort);
+    localStorage.setItem(
+      "timeFilterMoviesCollection",
+      JSON.stringify(resultShort)
+    );
     if (resultShort.length === 0) {
-      setSearchShortMovieMessage({
+      const message = {
         state: true,
         message: "Ни одной короткометражки",
-      });
+      };
+      setSearchShortMoviesMessage(message);
+      localStorage.setItem(
+        "timeFilterMoviesCollectionMessage",
+        JSON.stringify(message)
+      );
     }
 
     setTimeout(() => {
@@ -265,20 +390,23 @@ function App() {
   }
 
   function searchSavedMovie(searchText) {
-    resetErrors();
-    setSearchWordSaved({
+    const searchState = {
       state: true,
       word: searchText,
-    });
+    };
+    localStorage.setItem("searchWordSave", JSON.stringify(searchState));
+    setSearchWordSave(searchState);
+
+    resetErrors();
     setIsLoading(true);
     if (savedMoviesCollection.length === 0) {
       MainApi.getSavedMovies(getToken())
         .then((res) => {
           setSavedMoviesCollection(res);
-          localStorage.setItem("savedMovies", JSON.stringify(res));
+          localStorage.setItem("savedMoviesCollection", JSON.stringify(res));
         })
         .catch((err) => {
-          setErrorSavedMovieMessage({
+          setErrorSavedMoviesMessage({
             state: true,
             message:
               "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз",
@@ -288,20 +416,35 @@ function App() {
 
     const result = search(savedMoviesCollection, searchText);
     setFilterSavedMoviesCollection(result);
+    localStorage.setItem("filterSavedMoviesCollection", JSON.stringify(result));
     if (result.length === 0) {
-      setSearchSavedMovieMessage({
+      const message = {
         state: true,
         message: "Ничего не найдено",
-      });
+      };
+      setSearchSavedMoviesMessage(message);
+      localStorage.setItem(
+        "filterSavedMoviesCollectionMessage",
+        JSON.stringify(message)
+      );
     }
 
     const resultShort = searchShort(result);
-    setTimeFilterSavedMovieCollection(resultShort);
+    setTimeFilterSavedMoviesCollection(resultShort);
+    localStorage.setItem(
+      "timeFilterSavedMoviesCollection",
+      JSON.stringify(resultShort)
+    );
     if (resultShort.length === 0) {
-      setSearchShortSavedMovieMessage({
+      const message = {
         state: true,
-        message: "Ни одной короткометражки",
-      });
+        message: "Ничего не найдено",
+      };
+      setSearchShortSavedMoviesMessage(message);
+      localStorage.setItem(
+        "timeFilterSavedMoviesCollectionMessage",
+        JSON.stringify(message)
+      );
     }
 
     setTimeout(() => {
@@ -312,19 +455,35 @@ function App() {
   function resetSearchResult(isMovies) {
     resetErrors();
     if (isMovies) {
-      setSearchWord({
+      const searchState = {
         state: false,
         word: "",
-      });
+      };
+      localStorage.setItem("searchWord", JSON.stringify(searchState));
+      setSearchWord(searchState);
+
+      localStorage.setItem("filterMoviesCollection", JSON.stringify([]));
       setFilterMoviesCollection([]);
-      setTimeFilterMovieCollection([]);
+      localStorage.setItem("timeFilterMoviesCollection", JSON.stringify([]));
+      setTimeFilterMoviesCollection([]);
     } else {
-      setSearchWordSaved({
+      const searchState = {
         state: false,
         word: "",
-      });
+      };
+      localStorage.setItem("searchWordSave", JSON.stringify(searchState));
+      setSearchWordSave(searchState);
+
+      localStorage.setItem(
+        "filterSavedMoviesCollection",
+        JSON.stringify(savedMoviesCollection)
+      );
       setFilterSavedMoviesCollection(savedMoviesCollection);
-      setTimeFilterSavedMovieCollection(searchShort(savedMoviesCollection));
+      localStorage.setItem(
+        "timeFilterSavedMoviesCollection",
+        JSON.stringify(searchShort(savedMoviesCollection))
+      );
+      setTimeFilterSavedMoviesCollection(searchShort(savedMoviesCollection));
     }
   }
 
@@ -380,16 +539,14 @@ function App() {
   }
 
   function handleLoguot() {
-    localStorage.removeItem("jwt");
-    localStorage.removeItem("movies");
-    localStorage.removeItem("savedMovies");
+    localStorage.clear();
     setIsLogged(false);
     setMoviesCollection([]);
     setSavedMoviesCollection([]);
     setFilterMoviesCollection([]);
     setFilterSavedMoviesCollection([]);
-    setTimeFilterMovieCollection([]);
-    setTimeFilterSavedMovieCollection([]);
+    setTimeFilterMoviesCollection([]);
+    setTimeFilterSavedMoviesCollection([]);
     resetErrors();
   }
 
@@ -400,6 +557,11 @@ function App() {
           name: res.name,
           email: res.email,
         });
+        setSuccessEdit({
+          state: true,
+          message: "Данные потзователя успешно изменены",
+        });
+        setIsErrPopupOpen(true);
       })
       .catch((err) => {
         setErrorMessage({
@@ -415,16 +577,35 @@ function App() {
     resetErrors();
     MainApi.saveMovie(getToken(), movie)
       .then((res) => {
-        const result = [ res, ...savedMoviesCollection];
-        localStorage.setItem("savedMovies", JSON.stringify(result));
+        const result = [res, ...savedMoviesCollection];
+        localStorage.setItem("savedMoviesCollection", JSON.stringify(result));
         setSavedMoviesCollection(result);
-        if (searchWordSaved.state) {
-          const filteredResult = search(result, searchWordSaved.word);
+
+        if (searchWordSave.state) {
+          const filteredResult = search(result, searchWordSave.word);
+          localStorage.setItem(
+            "filterSavedMoviesCollection",
+            JSON.stringify(filteredResult)
+          );
           setFilterSavedMoviesCollection(filteredResult);
-          setTimeFilterSavedMovieCollection(searchShort(filteredResult))
+
+          localStorage.setItem(
+            "timeFilterSavedMoviesCollection",
+            JSON.stringify(searchShort(filteredResult))
+          );
+          setTimeFilterSavedMoviesCollection(searchShort(filteredResult));
         } else {
+          localStorage.setItem(
+            "filterSavedMoviesCollection",
+            JSON.stringify(result)
+          );
           setFilterSavedMoviesCollection(result);
-          setTimeFilterSavedMovieCollection(searchShort(result));
+
+          localStorage.setItem(
+            "timeFilterSavedMoviesCollection",
+            JSON.stringify(searchShort(result))
+          );
+          setTimeFilterSavedMoviesCollection(searchShort(result));
         }
       })
       .catch((err) => {
@@ -441,14 +622,22 @@ function App() {
     MainApi.deleteMovie(getToken(), id)
       .then(() => {
         const result = filterById(savedMoviesCollection, id);
-        localStorage.setItem("savedMovies", JSON.stringify(result));
+        localStorage.setItem("savedMoviesCollection", JSON.stringify(result));
         setSavedMoviesCollection(result);
-        setFilterSavedMoviesCollection(
-          filterById(filterSavedMoviesCollection, id)
+
+        const feltered = filterById(filterSavedMoviesCollection, id);
+        localStorage.setItem(
+          "filterSavedMoviesCollection",
+          JSON.stringify(feltered)
         );
-        setTimeFilterSavedMovieCollection(
-          filterById(timeFilterSavedMovieCollection, id)
+        setFilterSavedMoviesCollection(feltered);
+
+        const short = filterById(timeFilterSavedMoviesCollection, id);
+        localStorage.setItem(
+          "timeFilterSavedMoviesCollection",
+          JSON.stringify(short)
         );
+        setTimeFilterSavedMoviesCollection(short);
       })
       .catch((err) => {
         setErrorMessage({
@@ -480,21 +669,21 @@ function App() {
               element={
                 <ProtectedRoute isLogged={isLogged}>
                   <Movies
-                    isFilterMovies={isFilterMovies}
+                    filterState={isFilterMovies}
                     isLoading={isLoading}
                     changeFilter={changeFilter}
                     searchSubmit={searchMovies}
                     movies={
                       isFilterMovies
-                        ? timeFilterMovieCollection
+                        ? timeFilterMoviesCollection
                         : filterMoviesCollection
                     }
                     savedMovies={savedMoviesCollection}
-                    errorMessage={errorMovieMessage}
+                    errorMessage={errorMoviesMessage}
                     searchMessage={
                       isFilterMovies
-                        ? searchShortMovieMessage
-                        : searchMovieMessage
+                        ? searchShortMoviesMessage
+                        : searchMoviesMessage
                     }
                     searchWord={searchWord}
                     resetSearchResult={resetSearchResult}
@@ -509,23 +698,23 @@ function App() {
               element={
                 <ProtectedRoute isLogged={isLogged}>
                   <SavedMovies
-                    isFilterMovies={isFilterSavedMovies}
+                    filterState={isFilterMoviesSave}
                     isLoading={isLoading}
                     changeFilter={changeFilter}
                     movies={
-                      isFilterMovies
-                        ? timeFilterSavedMovieCollection
+                      isFilterMoviesSave
+                        ? timeFilterSavedMoviesCollection
                         : filterSavedMoviesCollection
                     }
                     searchSubmit={searchSavedMovie}
                     savedMovies={savedMoviesCollection}
-                    errorMessage={errorSavedMovieMessage}
+                    errorMessage={errorSavedMoviesMessage}
                     searchMessage={
-                      isFilterMovies
-                        ? searchShortSavedMovieMessage
-                        : searchSavedMovieMessage
+                      isFilterMoviesSave
+                        ? searchShortSavedMoviesMessage
+                        : searchSavedMoviesMessage
                     }
-                    searchWord={searchWordSaved}
+                    searchWord={searchWordSave}
                     resetSearchResult={resetSearchResult}
                     onDel={handleDeleteMovei}
                   />
@@ -571,6 +760,7 @@ function App() {
           isOpen={isErrPopupOpen}
           onClose={closeAllPopups}
           errorMesage={errorMessage}
+          successEdit={successEdit}
         />
       </div>
     </CurrentUserContext.Provider>

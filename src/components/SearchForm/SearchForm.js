@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import CustomCheckBox from "../CustomCheckBox/CustomCheckBox";
 
 function SearchForm({
-  isFilterMovies,
+  filterState,
   changeFilter,
   searchSubmit,
   searchWord,
@@ -35,6 +35,7 @@ function SearchForm({
   function clearInput() {
     resetSearchResult(isMovies);
   }
+
   return (
     <section className="search-form">
       <form
@@ -62,8 +63,9 @@ function SearchForm({
         </fieldset>
         <span className="search-form__error">{errors?.movie?.message}</span>
         <CustomCheckBox
-          isFilterMovies={isFilterMovies}
+          filterState={filterState}
           changeFilter={changeFilter}
+          isMovies={isMovies}
         />
       </form>
     </section>
