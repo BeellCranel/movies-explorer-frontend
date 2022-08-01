@@ -61,7 +61,7 @@ function Profile({ handlerLogout, handlerSubmit }) {
         name="profile"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="profile-form__title">Привет, Роман</h1>
+        <h1 className="profile-form__title">Привет, {currentUser.name}</h1>
         <fieldset className="profile-form__fieldset">
           <label className="profile-form__lable">
             Имя
