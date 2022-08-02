@@ -1,0 +1,79 @@
+.error-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(#000, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 0;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__opened {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+  }
+
+  &__container {
+    background-color: #202020;
+    width: 300px;
+    height: 300px;
+    padding: 15px 15px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    box-sizing: border-box;
+
+    &:hover {
+      cursor: auto;
+    }
+  }
+
+  &__close-btn {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-image: url("../../images/exit-nav-icon.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+
+    @media screen and (min-width: 624px) {
+      top: 22px;
+      right: 22px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  &__subtitle{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: center;
+  }
+}

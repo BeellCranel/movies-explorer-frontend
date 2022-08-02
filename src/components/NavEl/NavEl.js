@@ -1,7 +1,7 @@
 import "./NavEl.scss";
 import { Link } from "react-router-dom";
 
-function NavEl() {
+function NavEl({ onOpen }) {
   return (
     <>
       <Link
@@ -23,7 +23,7 @@ function NavEl() {
         <div className="acc-icon" />
         Аккаунт
       </Link>
-      <button className="nav-btn opacity" type="button" />
+      <button className="nav-btn opacity" type="button" onClick={onOpen} />
     </>
   );
 }

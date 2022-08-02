@@ -1,85 +1,120 @@
 import "./Register.scss";
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 
-function Register() {
-  const [userData, setUserData] = useState({
-    name: "Roman",
-    email: "pochta@yandex.ru",
-    password: "pochta@yandex.ru",
-  });
+function Register({ handlerSubmit, errorMessage, resetErrors }) {
+  const {
+    register,
+    formState: { errors, isValid, isDirty },
+    handleSubmit,
+    reset,
+  } = useForm({ mode: "onChange" });
 
-  const { name, email, password } = userData;
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setUserData({
-      ...userData,
-      [name]: value,
-    });
+  function onSubmit(data) {
+    handlerSubmit(data.name, data.email, data.password);
+    reset();
   }
+
+  const submitBtnClassName = `form__submit ${
+    !isValid ? "form__submit_disabled" : "opacity"
+  }`;
+
+  const inputNameClassName = `form__input${
+    errors.name && isDirty ? " form__input_error" : ""
+  }`;
+
+  const inputEmailClassName = `form__input${
+    errors.email && isDirty ? " form__input_error" : ""
+  }`;
+
+  const inputPasswordClassName = `form__input${
+    errors.password && isDirty ? " form__input_error" : ""
+  }`;
 
   return (
     <section className="register">
-      <Logo />
-      <form className="form" name="register">
+      <Logo resetErrors={resetErrors} />
+      <form className="form" name="register" onSubmit={handleSubmit(onSubmit)}>
         <h1 className="form__title">Добро пожаловать!</h1>
         <fieldset className="form__feildset">
           <label className="form__label">
             Имя
             <input
-              className="form__input"
-              id="name"
+              className={inputNameClassName}
               type="text"
-              name="name"
-              value={name}
-              onChange={handleChange}
-              placeholder=""
-              required
+              {...register("name", {
+                required: "Поле обязательно к заполнению",
+                minLength: {
+                  value: 2,
+                  message: "Минимум 2 символа",
+                },
+                maxLength: {
+                  value: 30,
+                  message: "Максимум 30 символов",
+                },
+                pattern: {
+                  // eslint-disable-next-line no-useless-escape
+                  value: /^[a-zа-я\s-]{1,}$/ig,
+                  message:
+                    "Имя содержит только латинские символы, кирилицу, пробел или дефис",
+                },
+              })}
             />
-            <span className="form__error" id="name-error"></span>
+            <span className="form__error">{errors?.name?.message}</span>
           </label>
           <label className="form__label">
             E-mail
             <input
-              className="form__input"
-              id="email"
+              className={inputEmailClassName}
               type="email"
-              name="email"
-              value={email}
-              onChange={handleChange}
-              placeholder=""
-              required
+              {...register("email", {
+                required: "Поле обязательно к заполнению",
+                pattern: {
+                  value:
+                    // eslint-disable-next-line no-useless-escape
+                    /^((([0-9A-Za-z]{1}[-0-9A-z\.]{0,30}[0-9A-Za-z]?)|([0-9А-Яа-я]{1}[-0-9А-я\.]{0,30}[0-9А-Яа-я]?))@([-A-Za-z]{1,}\.){1,}[-A-Za-z]{2,})$/i,
+                  message: "Введите корректный адрес электронной почты",
+                },
+              })}
             />
-            <span className="form__error" id="email-error"></span>
+            <span className="form__error">{errors?.email?.message}</span>
           </label>
           <label className="form__label">
             Пароль
             <input
-              className="form__input form__input_error"
-              id="password"
+              className={inputPasswordClassName}
               type="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-              placeholder=""
-              required
+              {...register("password", {
+                required: "Поле обязательно к заполнению",
+                minLength: {
+                  value: 2,
+                  message: "Минимум 2 символа",
+                },
+                maxLength: {
+                  value: 30,
+                  message: "Максимум 30 символов",
+                },
+              })}
             />
-            <span className="form__error" id="email-error">
-              Что-то пошло не так...
-            </span>
+            <span className="form__error">{errors?.password?.message}</span>
           </label>
         </fieldset>
+        <span className="form__api-error">{errorMessage?.message}</span>
         <input
-          className="form__submit opacity"
+          className={submitBtnClassName}
           type="submit"
           name="submit"
           value="Зарегистрироваться"
+          disabled={!isValid}
         />
         <div className="form__link">
           <p className="form__link_label">Уже зарегистрированы?</p>
-          <Link className="form__link_link opacity" to="/sign-in">
+          <Link
+            className="form__link_link opacity"
+            to="/sign-in"
+            onClick={resetErrors}
+          >
             Войти
           </Link>
         </div>

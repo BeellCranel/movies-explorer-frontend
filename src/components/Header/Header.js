@@ -2,11 +2,11 @@ import "./Header.scss";
 import Logo from "../Logo/Logo";
 import NavBar from "../NavBar/NavBar";
 
-function Header() {
+function Header({ onOpen, isLogged }) {
   return (
     <header className="header">
       <Logo />
-      <NavBar />
+      <NavBar onOpen={onOpen} isLogged={isLogged} />
     </header>
   );
 }

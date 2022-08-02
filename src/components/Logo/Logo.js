@@ -1,9 +1,9 @@
 import "./Logo.scss";
 import { Link } from "react-router-dom";
 
-function Logo() {
+function Logo({ resetErrors }) {
   return (
-    <Link className="logo opacity" to="/" />
+    <Link className="logo opacity" to="/" onClick={resetErrors} />
   );
 }
 
