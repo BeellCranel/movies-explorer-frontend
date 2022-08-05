@@ -1,5 +1,5 @@
 import "./Student.scss";
-import foto from "../../images/optimized/portfolio-pic.jpg";
+import foto from "../../images/optimized/golfer.jpg";
 
 function Student() {
   return (
@@ -18,11 +18,20 @@ function Student() {
             Фронтенд-разработчик, 27 лет
           </p>
           <p className="student__about_description">
-            Я родился и живу в Саратове, закончил факультет экономики СГУ. У
-            меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь
-            бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ
-            Контур». После того, как прошёл курс по веб-разработке, начал
-            заниматься фриланс-заказами и ушёл с постоянной работы.
+            Я родился в городе Бишкек республика Киргизия, а в 4 года переехал в
+            Москву. Закончил Экономико-технологический колледж № 22 по профессии
+            Повар-кондитер, после чего отслужил в армии. До недавнего времени я
+            работал в сфере обслуживания. Последнее место работы Гольф-клуб
+            "Сколково", по должности "ведущий гольф-распорядитель".
+          </p>
+          <p className="student__about_description">
+            Пару лет назад я начал обучаться программированию. На мысль о
+            возможности развиваться как разработчик меня вдохновил мой друг,
+            который на тот момент уже работал в IT и регулярно делился
+            впечатлениями. Я аккуратно присмотрелся к разным направлениям, и
+            самый большой интерес у меня вызвала Веб-разработка. За время
+            обучения я убедился в том, что это по-настоящему увлекательная
+            профессия.
           </p>
           <footer className="student__about_contacts">
             <nav className="student__about_nav">
@@ -62,43 +71,7 @@ function Student() {
             <li className="student__portfolio_item">
               <a
                 className="student__portfolio_link opacity"
-                href="https://github.com/BeellCranel/how-to-learn"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Статичный сайт
-              </a>
-              <a
-                className="student__portfolio_link opacity"
-                href="https://github.com/BeellCranel/how-to-learn"
-                target="_blank"
-                rel="noreferrer"
-              >
-                ↗
-              </a>
-            </li>
-            <li className="student__portfolio_item">
-              <a
-                className="student__portfolio_link opacity"
-                href="https://github.com/BeellCranel/russian-travel"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Адаптивный сайт
-              </a>
-              <a
-                className="student__portfolio_link opacity"
-                href="https://github.com/BeellCranel/russian-travel"
-                target="_blank"
-                rel="noreferrer"
-              >
-                ↗
-              </a>
-            </li>
-            <li className="student__portfolio_item">
-              <a
-                className="student__portfolio_link opacity"
-                href="https://github.com/BeellCranel/react-mesto-auth"
+                href="https://mesto-react-auth.herokuapp.com/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -106,7 +79,43 @@ function Student() {
               </a>
               <a
                 className="student__portfolio_link opacity"
-                href="https://github.com/BeellCranel/react-mesto-auth"
+                href="https://mesto-react-auth.herokuapp.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                ↗
+              </a>
+            </li>
+            <li className="student__portfolio_item">
+              <a
+                className="student__portfolio_link opacity"
+                href="https://beellcranel.github.io/russian-travel/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Адаптивный сайт
+              </a>
+              <a
+                className="student__portfolio_link opacity"
+                href="https://beellcranel.github.io/russian-travel/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                ↗
+              </a>
+            </li>
+            <li className="student__portfolio_item">
+              <a
+                className="student__portfolio_link opacity"
+                href="https://beellcranel.github.io/how-to-learn/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Статичный сайт
+              </a>
+              <a
+                className="student__portfolio_link opacity"
+                href="https://beellcranel.github.io/how-to-learn/"
                 target="_blank"
                 rel="noreferrer"
               >
