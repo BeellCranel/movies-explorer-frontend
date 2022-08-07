@@ -1,6 +1,6 @@
-# Frontend для дипломной работы
+# Frontend одностраничного fullstack приложения развернутого на удаленном сервере
 
-## О работе
+## 💥О работе💥
 
 ### Функционал:
 
@@ -22,8 +22,9 @@
 ### Интро
 
 - [ссылка на мою работу](https://my-website.nomoredomains.xyz/)
+- [ссылка на репозиторий Backend части приложения](https://github.com/BeellCranel/movies-explorer-api)
 - домен api: api.my-website.nomoredomains.xyz
-- [макет](<https://www.figma.com/file/OupRBd44p0uRa0TWOaD8Xg/Diploma-(Copy)?node-id=932%3A3593>)
+- [макет по которому был создан проект](<https://www.figma.com/file/OupRBd44p0uRa0TWOaD8Xg/Diploma-(Copy)?node-id=932%3A3593>)
 
 ### Статус
 
