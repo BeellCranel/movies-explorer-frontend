@@ -71,7 +71,7 @@ function Student() {
             <li className="student__portfolio_item">
               <a
                 className="student__portfolio_link opacity"
-                href="https://mesto-react-auth.herokuapp.com/"
+                href="https://react-mesto-auth.herokuapp.com/"
                 target="_blank"
                 rel="noreferrer"
               >
