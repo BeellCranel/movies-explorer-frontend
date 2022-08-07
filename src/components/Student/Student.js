@@ -39,7 +39,7 @@ function Student() {
                 <li className="student__about_item">
                   <a
                     className="student__about_link opacity"
-                    href="https://vk.com/mine666"
+                    href="https://vk.com/dergach_rs"
                     target="_blank"
                     rel="noreferrer"
                     lang="en"
@@ -79,11 +79,11 @@ function Student() {
               </a>
               <a
                 className="student__portfolio_link opacity"
-                href="https://mesto-react-auth.herokuapp.com/"
+                href="https://github.com/BeellCranel/react-mesto-auth"
                 target="_blank"
                 rel="noreferrer"
               >
-                ↗
+                Репозиторий проекта
               </a>
             </li>
             <li className="student__portfolio_item">
@@ -97,11 +97,11 @@ function Student() {
               </a>
               <a
                 className="student__portfolio_link opacity"
-                href="https://beellcranel.github.io/russian-travel/"
+                href="https://github.com/BeellCranel/russian-travel"
                 target="_blank"
                 rel="noreferrer"
               >
-                ↗
+                Репозиторий проекта
               </a>
             </li>
             <li className="student__portfolio_item">
@@ -115,11 +115,11 @@ function Student() {
               </a>
               <a
                 className="student__portfolio_link opacity"
-                href="https://beellcranel.github.io/how-to-learn/"
+                href="https://github.com/BeellCranel/how-to-learn"
                 target="_blank"
                 rel="noreferrer"
               >
-                ↗
+                Репозиторий проекта
               </a>
             </li>
           </ul>
