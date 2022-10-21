@@ -60,20 +60,28 @@
       flex-direction: column;
     }
 
-    &_foto {
+    &_photo {
+      display: block;
       align-self: center;
-      max-width: 292px;
-      max-height: 352px;
-      border-radius: 12px;
+      min-width: 292px;
+      width: 292px;
+      min-height: 292px;
+      height: 292px;
+      border-radius: 50%;
+      object-fit: cover;
 
       @media screen and (min-width: 624px) {
-        max-width: 255px;
-        max-height: 307px;
+        min-width: 255px;
+        width: 255px;
+        min-height: 255px;
+        height: 255px;
       }
 
       @media screen and (min-width: 806px) {
-        max-width: 270px;
-        max-height: 327px;
+        min-width: 270px;
+        width: 270px;
+        min-height: 270px;
+        height: 270px;
       }
     }
 
@@ -123,7 +131,7 @@
       @media screen and (min-width: 624px) {
         font-size: 14px;
         line-height: 22px;
-        padding-top:  26px;
+        padding-top: 26px;
       }
     }
 
@@ -147,7 +155,7 @@
 
     &_link {
       text-decoration: none;
-      color: #4285F4;
+      color: #4285f4;
       font-size: 14px;
       line-height: 17px;
       font-weight: 500;
@@ -198,7 +206,7 @@
 
     &_link {
       text-decoration: none;
-      color: #4285F4;
+      color: #4285f4;
       @extend %title-styles;
       line-height: 28px;
 

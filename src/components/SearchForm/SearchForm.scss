@@ -57,6 +57,20 @@
       background-color: #2f2f2f;
       width: calc(100% - 80px);
 
+      &:-webkit-autofill {
+        padding: 0 16px;
+        box-shadow: inset 0 0 0 50px #2f2f2f;
+        -webkit-text-fill-color: #fff;
+        border: 5px solid #2f2f2f;
+      }
+
+      &:focus {
+        padding: 0 16px;
+        outline: 0;
+        outline-offset: 0;
+        border: 5px solid #2f2f2f;
+      }
+
       @media screen and (min-width: 624px) {
         padding: 0 22px;
         font-size: 14px;

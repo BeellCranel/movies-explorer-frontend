@@ -1,5 +1,5 @@
 import "./Student.scss";
-import foto from "../../images/optimized/golfer.jpg";
+import photo from "../../images/optimized/киса.jpg";
 
 function Student() {
   return (
@@ -8,8 +8,8 @@ function Student() {
 
       <section className="student__about">
         <img
-          className="student__about_foto"
-          src={foto}
+          className="student__about_photo"
+          src={photo}
           alt="Фотография автора"
         />
         <div className="student__about_img-caption">

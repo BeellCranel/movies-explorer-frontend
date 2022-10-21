@@ -16,12 +16,18 @@ function MainPageNav() {
               </a>
             </li>
             <li className="main-page-header__menu_item">
-              <a href="#technologies" className="main-page-header__menu_link opacity">
+              <a
+                href="#technologies"
+                className="main-page-header__menu_link opacity"
+              >
                 Технологии
               </a>
             </li>
             <li className="main-page-header__menu_item">
-              <a href="#student" className="main-page-header__menu_link opacity">
+              <a
+                href="#student"
+                className="main-page-header__menu_link opacity"
+              >
                 Студент
               </a>
             </li>
