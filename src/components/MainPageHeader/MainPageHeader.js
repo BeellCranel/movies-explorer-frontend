@@ -33,6 +33,13 @@ function MainPageNav() {
             </li>
           </ul>
         </nav>
+        <div className="main-page-header__square main-page-header__square-one">
+          <div className="main-page-header__square main-page-header__square-two">
+            <div className="main-page-header__square main-page-header__square-three">
+              <div className="main-page-header__square main-page-header__square-four" />
+            </div>
+          </div>
+        </div>
       </div>
     </header>
   );

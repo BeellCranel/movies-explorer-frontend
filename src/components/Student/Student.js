@@ -18,20 +18,10 @@ function Student() {
             Фронтенд-разработчик, 27 лет
           </p>
           <p className="student__about_description">
-            Я родился в городе Бишкек республика Киргизия, а в 4 года переехал в
-            Москву. Закончил Экономико-технологический колледж № 22 по профессии
-            Повар-кондитер, после чего отслужил в армии. До недавнего времени я
-            работал в сфере обслуживания. Последнее место работы Гольф-клуб
-            "Сколково", по должности "ведущий гольф-распорядитель".
-          </p>
-          <p className="student__about_description">
-            Пару лет назад я начал обучаться программированию. На мысль о
-            возможности развиваться как разработчик меня вдохновил мой друг,
-            который на тот момент уже работал в IT и регулярно делился
-            впечатлениями. Я аккуратно присмотрелся к разным направлениям, и
-            самый большой интерес у меня вызвала Веб-разработка. За время
-            обучения я убедился в том, что это по-настоящему увлекательная
-            профессия.
+            На мысль о возможности развиваться как разработчик меня вдохновил
+            мой друг. Я аккуратно присмотрелся к разным направлениям, и самый
+            большой интерес у меня вызвала Веб-разработка. За время обучения я
+            убедился в том, что это по-настоящему увлекательная профессия.
           </p>
           <footer className="student__about_contacts">
             <nav className="student__about_nav">
@@ -65,64 +55,91 @@ function Student() {
       </section>
 
       <section className="student__portfolio">
-        <h3 className="student__portfolio_title">Портфолио</h3>
+        <h3 className="student__portfolio_title">Портфолио:</h3>
         <nav className="student__portfolio_nav">
-          <ul className="student__portfolio_menu">
+          <ol className="student__portfolio_menu">
             <li className="student__portfolio_item">
-              <a
-                className="student__portfolio_link opacity"
-                href="https://react-mesto-auth.herokuapp.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Одностраничное приложение
-              </a>
-              <a
-                className="student__portfolio_link opacity"
-                href="https://github.com/BeellCranel/react-mesto-auth"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Репозиторий проекта
-              </a>
+              <h3 className="student__portfolio_item-title">
+                Одностраничное приложение.
+              </h3>
+              <p className="student__portfolio_item-subtitle">
+                Интерактивная страница, где можно регистрироваться, добавлять
+                фотографии, удалять их и ставить лайки.
+              </p>
+              <div className="student__portfolio_link-wrapper">
+                <a
+                  className="student__portfolio_link opacity"
+                  href="https://react-mesto-auth.herokuapp.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  lang="en"
+                >
+                  Watch cite
+                </a>
+                <a
+                  className="student__portfolio_link opacity"
+                  href="https://github.com/BeellCranel/react-mesto-auth"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Repository
+                </a>
+              </div>
             </li>
             <li className="student__portfolio_item">
-              <a
-                className="student__portfolio_link opacity"
-                href="https://beellcranel.github.io/russian-travel/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Адаптивный сайт
-              </a>
-              <a
-                className="student__portfolio_link opacity"
-                href="https://github.com/BeellCranel/russian-travel"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Репозиторий проекта
-              </a>
+              <h3 className="student__portfolio_item-title">
+                Адаптивный сайт.
+              </h3>
+              <p className="student__portfolio_item-subtitle">
+                Проект о путешествии по России. Сайт сделан по макету в Фигме,
+                соблюдая все разрешения экранов. И немого добавил от себя в
+                промежутке от 424px и 768px.
+              </p>
+              <div className="student__portfolio_link-wrapper">
+                <a
+                  className="student__portfolio_link opacity"
+                  href="https://beellcranel.github.io/russian-travel/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Watch cite
+                </a>
+                <a
+                  className="student__portfolio_link opacity"
+                  href="https://github.com/BeellCranel/russian-travel"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Repository
+                </a>
+              </div>
             </li>
             <li className="student__portfolio_item">
-              <a
-                className="student__portfolio_link opacity"
-                href="https://beellcranel.github.io/how-to-learn/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Статичный сайт
-              </a>
-              <a
-                className="student__portfolio_link opacity"
-                href="https://github.com/BeellCranel/how-to-learn"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Репозиторий проекта
-              </a>
+              <h3 className="student__portfolio_item-title">Статичный сайт.</h3>
+              <p className="student__portfolio_item-subtitle">
+                Статичный сайт с семантической версткой, использованием
+                анимации.
+              </p>
+              <div className="student__portfolio_link-wrapper">
+                <a
+                  className="student__portfolio_link opacity"
+                  href="https://beellcranel.github.io/how-to-learn/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Watch cite
+                </a>
+                <a
+                  className="student__portfolio_link opacity"
+                  href="https://github.com/BeellCranel/how-to-learn"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Repository
+                </a>
+              </div>
             </li>
-          </ul>
+          </ol>
         </nav>
       </section>
     </section>
