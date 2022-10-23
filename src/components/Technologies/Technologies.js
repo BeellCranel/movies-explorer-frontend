@@ -1,8 +1,8 @@
 import "./Technologies.scss";
 
-function Technologies() {
+function Technologies({ technologiesRef }) {
   return (
-    <section id="technologies" className="technologies">
+    <section ref={technologiesRef} className="technologies">
       <h2 className="technologies__title">Технологии</h2>
 
       <section className="technologies__kinds">

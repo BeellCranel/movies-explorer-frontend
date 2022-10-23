@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import "./App.scss";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Main from "../Main/Main";
@@ -87,6 +87,26 @@ function App() {
   // хуки
   const navigate = useNavigate();
   const location = useLocation();
+  const headerRef = useRef();
+  const aboutRef = useRef();
+  const technologiesRef = useRef();
+  const studentRef = useRef();
+
+  function goToHeader() {
+    headerRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function goToAbout() {
+    aboutRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function goToTechnologies() {
+    technologiesRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function goToStudent() {
+    studentRef.current.scrollIntoView({ behavior: "smooth" });
+  }
 
   function changeFilter(isMovies) {
     if (isMovies) {
@@ -661,9 +681,28 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Layout onOpen={handleNavPopupOpen} isLogged={isLogged} />}
+            element={
+              <Layout
+                headerRef={headerRef}
+                onOpen={handleNavPopupOpen}
+                isLogged={isLogged}
+              />
+            }
           >
-            <Route index element={<Main />} />
+            <Route
+              index
+              element={
+                <Main
+                  aboutRef={aboutRef}
+                  technologiesRef={technologiesRef}
+                  studentRef={studentRef}
+                  goToHeader={goToHeader}
+                  goToAbout={goToAbout}
+                  goToTechnologies={goToTechnologies}
+                  goToStudent={goToStudent}
+                />
+              }
+            />
             <Route
               path="movies"
               element={

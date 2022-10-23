@@ -1,8 +1,27 @@
+import React, { useEffect, useState, useRef } from "react";
 import "./MainPageHeader.scss";
 
-function MainPageNav() {
+function MainPageNav({ goToHeader, goToAbout, goToTechnologies, goToStudent }) {
+  const [isBackActive, setIsBackActive] = useState(false);
+  const backRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (!entry.isIntersecting) {
+        setIsBackActive(true);
+      } else {
+        setIsBackActive(false);
+      }
+    });
+    observer.observe(backRef.current);
+  }, []);
+
+  const backClassName = `main-page-header__menu_item-back ${
+    isBackActive ? "" : "hide"
+  }`;
   return (
-    <header className="main-page-header">
+    <header ref={backRef} className="main-page-header">
       <div className="main-page-header__container">
         <h1 className="main-page-header__title">
           Учебный проект студента факультета Веб-разработки.
@@ -10,26 +29,37 @@ function MainPageNav() {
 
         <nav className="main-page-header__nav-menu">
           <ul className="main-page-header__menu">
-            <li className="main-page-header__menu_item">
-              <a href="#about" className="main-page-header__menu_link opacity">
-                О проекте
-              </a>
+            <li className={backClassName}>
+              <div
+                onClick={goToHeader}
+                className="main-page-header__menu_link main-page-header__menu_link_back opacity"
+              >
+                В начало
+              </div>
             </li>
             <li className="main-page-header__menu_item">
-              <a
-                href="#technologies"
+              <div
+                onClick={goToAbout}
+                className="main-page-header__menu_link opacity"
+              >
+                О проекте
+              </div>
+            </li>
+            <li className="main-page-header__menu_item">
+              <div
+                onClick={goToTechnologies}
                 className="main-page-header__menu_link opacity"
               >
                 Технологии
-              </a>
+              </div>
             </li>
             <li className="main-page-header__menu_item">
-              <a
-                href="#student"
+              <div
+                onClick={goToStudent}
                 className="main-page-header__menu_link opacity"
               >
                 Студент
-              </a>
+              </div>
             </li>
           </ul>
         </nav>

@@ -1,9 +1,9 @@
 import "./Student.scss";
 import photo from "../../images/optimized/киса.jpg";
 
-function Student() {
+function Student({ studentRef }) {
   return (
-    <section id="student" className="student">
+    <section ref={studentRef} className="student">
       <h2 className="student__title">Студент</h2>
 
       <section className="student__about">

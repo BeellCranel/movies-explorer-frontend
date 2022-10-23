@@ -1,8 +1,8 @@
 import "./About.scss";
 
-function About() {
+function About({ aboutRef }) {
   return (
-    <section id="about" className="about">
+    <section ref={aboutRef} className="about">
       <h2 className="about__title">О проекте</h2>
       <div className="about__facts">
         <section className="about__fact">
