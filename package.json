@@ -17,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "npm run build && scp -r ./build/* mine@84.201.139.98:/home/mine/movies-explorer-frontend",
+    "deploy": "npm run build && scp -r ./build/* mine@51.250.54.160:/home/mine/frontend",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
