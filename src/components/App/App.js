@@ -199,14 +199,6 @@ function App() {
             email: res.email,
           });
           setIsLogged(true);
-        })
-        .catch((err) => {
-          setErrorMessage({
-            state: true,
-            status: err.status,
-            message: err.message,
-          });
-          setIsErrPopupOpen(true);
         });
     }
   }

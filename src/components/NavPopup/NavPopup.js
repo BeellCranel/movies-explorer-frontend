@@ -1,5 +1,5 @@
 import "./NavPopup.scss";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function NavPopup({ isOpen, onClose }) {
   const navPopupClassName = `nav-popup${isOpen ? " nav-popup__opened" : ""}`;
@@ -16,13 +16,16 @@ function NavPopup({ isOpen, onClose }) {
         <nav className="nav-popup__menu">
           <ul className="nav-popup__list">
             <li className="nav-popup__item">
-              <Link
+              <NavLink
                 className="nav-popup__link opacity"
                 to="/"
+                style={({ isActive }) => ({
+                  color: isActive ? "#9f9e9c" : "white",
+                })}
                 onClick={onClose}
               >
                 Главная
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-popup__item">
               <NavLink
