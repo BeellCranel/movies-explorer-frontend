@@ -1,28 +1,37 @@
 import "./NavEl.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function NavEl({ onOpen }) {
   return (
     <>
-      <Link
+      <NavLink
         className="nav-el nav-el__movies nav-el__closing opacity"
+        style={({ isActive }) => ({
+          color: isActive ? "#9f9e9c" : "white",
+        })}
         to="/movies"
       >
         Фильмы
-      </Link>
-      <Link
+      </NavLink>
+      <NavLink
         className="nav-el nav-el__saved nav-el__closing opacity"
+        style={({ isActive }) => ({
+          color: isActive ? "#9f9e9c" : "white",
+        })}
         to="/saved-movies"
       >
         Сохранённые фильмы
-      </Link>
-      <Link
+      </NavLink>
+      <NavLink
         className="nav-el nav-el__account nav-el__closing opacity"
+        style={({ isActive }) => ({
+          color: isActive ? "#9f9e9c" : "white",
+        })}
         to="/profile"
       >
         <div className="acc-icon" />
         Аккаунт
-      </Link>
+      </NavLink>
       <button className="nav-btn opacity" type="button" onClick={onOpen} />
     </>
   );

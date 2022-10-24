@@ -1,5 +1,5 @@
 import "./NavPopup.scss";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function NavPopup({ isOpen, onClose }) {
   const navPopupClassName = `nav-popup${isOpen ? " nav-popup__opened" : ""}`;
@@ -25,33 +25,42 @@ function NavPopup({ isOpen, onClose }) {
               </Link>
             </li>
             <li className="nav-popup__item">
-              <Link
+              <NavLink
                 className="nav-popup__link opacity"
                 to="/movies"
+                style={({ isActive }) => ({
+                  color: isActive ? "#9f9e9c" : "white",
+                })}
                 onClick={onClose}
               >
                 Фильмы
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-popup__item">
-              <Link
+              <NavLink
                 className="nav-popup__link opacity"
                 to="/saved-movies"
+                style={({ isActive }) => ({
+                  color: isActive ? "#9f9e9c" : "white",
+                })}
                 onClick={onClose}
               >
                 Сохранённые фильмы
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
-        <Link
+        <NavLink
           className="nav-popup__link nav-popup__link_profile opacity"
           to="/profile"
+          style={({ isActive }) => ({
+            color: isActive ? "#9f9e9c" : "white",
+          })}
           onClick={onClose}
         >
           <div className="acc-icon" />
           Аккаунт
-        </Link>
+        </NavLink>
       </div>
     </div>
   );

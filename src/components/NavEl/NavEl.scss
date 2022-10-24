@@ -26,6 +26,11 @@
     border-radius: 50px;
   }
 
+  &__selected {
+    @extend %item-style;
+    color: #9f9e9c;
+  }
+
   &__closing {
     @media screen and (max-width: 805px) {
       display: none;
